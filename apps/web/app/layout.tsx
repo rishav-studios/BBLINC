@@ -1,15 +1,16 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import localFont from "next/font/local";
 
-import "@workspace/ui/globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@workspace/ui/lib/utils";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import LenisProvider from "@/components/providers/LenisProvider";
+import "@bbl/ui/globals.css";
+import { cn } from "@bbl/ui/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+const Archivo = localFont({
+  src: './fonts/Archivo.ttf',
+  display: 'swap',
 })
+
 
 export default function RootLayout({
   children,
@@ -20,10 +21,17 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn("antialiased", Archivo.className)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className=" antialiased ">
+        <LenisProvider>
+
+          <Navbar />
+          <main >{children}</main>
+          <Footer />
+
+        </LenisProvider>
+
       </body>
     </html>
   )
