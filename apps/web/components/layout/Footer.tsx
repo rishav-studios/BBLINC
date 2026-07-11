@@ -1,5 +1,7 @@
 "use client";
 
+import { INDUSTRIES_DATA } from "@/constants/industries_data";
+import { materials } from "@/constants/materials_data";
 import { TextHoverEffect } from "@bbl/ui/components/ui/text-hover-effect";
 import { cn } from "@bbl/ui/lib/utils";
 import Image from "next/image";
@@ -16,36 +18,26 @@ import Container from "./Container";
 const FOOTER_LINKS = {
     company: [
         { id: "f8f6c2c2-2d6dd7b", label: "About Us", href: "/about" },
-        { id: "f8f6c2c2-2d6dd7c", label: "Facilities", href: "/facilities" },
+        // { id: "f8f6c2c2-2d6dd7c", label: "Facilities", href: "/facilities" },
         { id: "f8f6c2c2-2d6dd7d", label: "Contact", href: "/contact" },
-        { id: "f8f6c2c2-2d6dd5d", label: "Blogs", href: "/blogs" },
+        { id: "f8f6c2f2-2d6dd7d", label: "Quote", href: "/quote" },
+        // { id: "f8f6c2c2-2d6dd5d", label: "Blogs", href: "/blogs" },
 
     ],
-    industries: [
-        { id: "f8f6c2c2-2d6dd7f", label: "Aerospace", href: "/industries/aerospace" },
-        { id: "f8f6c2c2-2d6dd7g", label: "Automobile", href: "/industries/automobile" },
-        { id: "f8f6c2c2-2d6dd7a", label: "Railway", href: "/industries/railway" },
-        { id: "f8f6c2c2-2d6dd7r", label: "Oil & Gas", href: "/industries/oil-gas" },
-        { id: "f8f6c2c2-2d6dd7h", label: "Agriculture", href: "/industries/agriculture" },
-        { id: "f8f6c2c2-2d6dd7i", label: "Chemical", href: "/industries/chemical" },
-        { id: "f8f6c2c2-2d6dd7j", label: "HVAC", href: "/industries/hvac" },
-
-    ],
-    materials: [
-        { id: "f81232c2-2d6dd7e", label: "Brass", href: "/materials/brass" },
-        { id: "f81233c2-2d6dd7f", label: "Titanium", href: "/materials/titanium" },
-        { id: "f81234c2-2d6dd7a", label: "Aluminium", href: "/materials/aluminium" },
-        { id: "f81235c2-2d6dd7g", label: "Bronze", href: "/materials/bronze" },
-        { id: "f81235c2-2d6dd7t", label: "Copper", href: "/materials/copper" },
-        { id: "f81236c2-2d6dd7z", label: "Mild Steel", href: "/materials/mild-steel" },
-        { id: "f81236c2-2d6dd7h", label: "Stainless Steel", href: "/materials/stainless-steel" },
-        { id: "f81237c2-2d6dd7i", label: "Gun Metal", href: "/materials/gun-metal" },
-
-    ],
+    industries: INDUSTRIES_DATA.map((industry, index) => ({
+        ...industry,
+        id: `industry-${index}`,
+        href: `/industries/${industry.slug}`
+    })),
+    materials: materials.map((material, index) => ({
+        label: material.name,
+        id: `material-${index}`,
+        href: `/materials/${material.name}`
+    })),
     legal: [
-        { id: "f8f6c2c2-2d6dd7h", label: "Privacy Policy", href: "/privacy" },
-        { id: "f8f6c2c2-2d6dd7i", label: "Terms of Service", href: "/terms" },
-        { id: "f8f6c2c2-2d6dd7j", label: "Quality Policy", href: "/quality" },
+        { id: "f8f6c2c2-2d6dd7h", label: "Privacy Policy", href: "/privacy-policy" },
+        { id: "f8f6c2c2-2d6dd7i", label: "Terms of Service", href: "/terms-of-service" },
+        { id: "f8f6c2c2-2d6dd7j", label: "Quality Policy", href: "/quality-policy" },
     ],
     socials: [
         {
@@ -63,7 +55,7 @@ const FOOTER_LINKS = {
                 <path
                     className="fill-background/80 group-hover/custom-link:fill-primary transition-colors duration-300" d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96zM165 266.2L231.5 266.2L231.5 480L165 480L165 266.2zM236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160C219.5 160 236.7 177.2 236.7 198.5zM413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480L413.9 480z" />
             </svg>,
-            label: "LinkedIn", href: "https://linkedin.com/"
+            label: "LinkedIn", href: "https://www.linkedin.com/company/bblinc."
         },
     ]
 };
@@ -119,9 +111,10 @@ type LinksListProps = {
         href: string,
         icon?: ReactNode
     }[];
-    direction?: "vertical" | "horizontal"
+    direction?: "vertical" | "horizontal",
+    shouldOpenExternal?: boolean
 }
-const LinksList = ({ links, direction = "vertical" }: LinksListProps) => {
+const LinksList = ({ links, direction = "vertical", shouldOpenExternal = false }: LinksListProps) => {
     return (
         <ul className={cn("space-y-4", direction === "horizontal" && "flex gap-4")}>
             {links.map((link) => (
@@ -130,6 +123,7 @@ const LinksList = ({ links, direction = "vertical" }: LinksListProps) => {
                         href={link.href}
                         variant="hover-underline"
                         className="text-background/80 w-max font-medium text-lg gap-2"
+                        target={shouldOpenExternal ? "_blank" : "_self"}
                     >
                         {link.icon && <>{link.icon}</>}
                         {link.label}
@@ -174,7 +168,7 @@ const FooterContactInfo = () => {
                 <Heading>Contact info</Heading>
                 <div className="space-y-4 text-background/80 w-max font-medium text-lg">
 
-                    <a href="https://maps.app.goo.gl/2jqQ9etxXuKZ3zyk6" target="_blank" rel="noopener noreferrer" className={combinedClasses}>
+                    <a href="https://maps.app.goo.gl/sGKyVJ9uXdXvq8Ny6" target="_blank" rel="noopener noreferrer" className={combinedClasses}>
                         Jamnagar, Gujarat, India
                     </a>
                     <a href="mailto:info@bblinc.in" target="_blank" className={combinedClasses}>
@@ -182,6 +176,9 @@ const FooterContactInfo = () => {
                     </a>
                     <a href="tel:+919173355608" target="_blank" className={combinedClasses}>
                         +91 9173355608
+                    </a>
+                    <a href="tel:+919879614827" target="_blank" className={combinedClasses}>
+                        +91 9879614827
                     </a>
 
 
@@ -199,8 +196,8 @@ const FooterWorkingHours = () => {
                 <Heading>Working hours</Heading>
 
                 <ul className="space-y-4 text-background/80 w-max font-medium text-lg">
-                    <li>Sat to Thu - 9:00AM to 6:00PM</li>
-                    <li>Fri - Closed</li>
+                    <li>Sat to Thu &nbsp;-&nbsp; 9:00 AM &nbsp;to&nbsp; 6:00 PM</li>
+                    <li>Fri &nbsp;-&nbsp; Closed</li>
                 </ul>
             </div>
 
@@ -219,7 +216,7 @@ const Footer = () => {
                 <Fade>
                     <GridItem className="flex gap-12 items-center">
                         <Image src="/logo-white.svg" alt="" width={120} height={120} />
-                        <p className="text-background/80 max-w-sm font-normal">We are a precision engineering firm specializing in brass components with over 20 years of industry experience.</p>
+                        <p className="text-background/80 max-w-sm font-normal">We are a precision engineering firm specializing in various materials with over 26 years of industry experience.</p>
                     </GridItem>
                 </Fade>
                 <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-12 mt-12">
@@ -248,7 +245,7 @@ const Footer = () => {
                     </Fade>
                     <Fade delay={.2}>
 
-                        <LinksList links={FOOTER_LINKS.socials} direction="horizontal" />
+                        <LinksList links={FOOTER_LINKS.socials} direction="horizontal" shouldOpenExternal />
                     </Fade>
                 </div>
 

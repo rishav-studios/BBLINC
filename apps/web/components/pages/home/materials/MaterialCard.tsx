@@ -1,7 +1,7 @@
 "use client";
 
+import type { Material } from "@/constants/materials_data";
 import { motion, type Variants } from "motion/react";
-import type { Material } from "./materialsData";
 
 type MaterialCardProps = {
     material: Material;

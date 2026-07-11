@@ -1,4 +1,5 @@
 import { cn } from "@bbl/ui/lib/utils";
+import Fade from "../animations/Fade";
 
 type SectionHeaderProps = {
     children: React.ReactNode;
@@ -6,15 +7,15 @@ type SectionHeaderProps = {
 }
 const SectionHeader = ({ children, className }: SectionHeaderProps) => {
     return (
-        <div className={cn("flex h-20 items-center gap-6 w-max", className)}>
+        <Fade className={cn("flex h-20 items-center gap-6 w-max", className)}>
             {children}
-        </div>
+        </Fade>
     )
 }
 
 const Separator = () => {
     return (
-        <div className="w-[0.5px] h-8/10 mt-auto bg-linear-to-b from-transparent via-primary/70 to-transparent" />
+        <div className="w-px h-8/10 bg-linear-to-b from-transparent via-primary/70 to-transparent" />
     )
 }
 
@@ -27,9 +28,9 @@ const Description = ({ children, className }: { children: string, className?: st
     if (children.includes("\n")) {
         const lines = children.split("\n")
         return (
-            <p className={cn("flex flex-col translate-y-2", className)}>
+            <p className={cn("flex flex-col text-gray-500", className)}>
                 {lines.map((line, index) => (
-                    <span key={index} className="text-gray-500">{line}</span>
+                    <span key={index} className="">{line}</span>
                 ))}
             </p>
         )

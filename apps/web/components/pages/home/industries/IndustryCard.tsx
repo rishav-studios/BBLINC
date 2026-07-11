@@ -1,24 +1,14 @@
 "use client";
 
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
+import { Industry } from "@/constants/industries_data";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useState } from "react";
-
-export type Industry = {
-    id: string;
-    label: string;
-    slug: string;
-    description: string;
-    stats: { value: string; unit: string }[];
-    videoSrc: string;
-    posterSrc: string;
-};
 
 type IndustryCardProps = {
     Industry: Industry;
     isVisible: boolean;
 };
-
 // ── Container: spring-physics entry so it feels physically grounded ──────────
 const cardVariants: Variants = {
     hidden: { opacity: 0, y: 32 },

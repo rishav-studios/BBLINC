@@ -1,7 +1,7 @@
 "use client";
 
+import type { Industry } from "@/constants/industries_data";
 import { motion } from "motion/react";
-import type { Industry } from "./IndustryCard";
 
 type InustryNavProps = {
     sectors: Industry[];

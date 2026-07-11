@@ -1,7 +1,7 @@
 import CTA from "@/components/pages/home/CTA";
-import { INDUSTRIES_DATA } from "@/components/pages/home/industries/industries";
 import IndustriesGrid from "@/components/pages/industries/IndustriesGrid";
 import PageHeader from "@/components/shared/PageHeader";
+import { INDUSTRIES_DATA } from "@/constants/industries_data";
 
 export default function Page() {
     return (

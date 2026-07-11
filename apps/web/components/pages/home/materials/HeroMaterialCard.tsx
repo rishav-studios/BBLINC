@@ -1,9 +1,9 @@
 "use client";
 
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
+import type { Material } from "@/constants/materials_data";
 import { motion, type Variants } from "motion/react";
 import { useState } from "react";
-import type { Material } from "./materialsData";
 
 type HeroMaterialCardProps = {
     material: Material;

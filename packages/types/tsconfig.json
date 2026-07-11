@@ -1,0 +1,21 @@
+    {
+  "extends": "@bbl/typescript-config/react-library.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@bbl/types/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "*.ts",
+    "src/*.schema.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

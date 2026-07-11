@@ -35,6 +35,7 @@ type NavItem = NavLinkItem | NavDropdownItem
 // ─── Nav Data ──────────────────────────────────────────────────────────────────
 const navItems: NavItem[] = [
     { type: "link", title: "Home", href: "/" },
+    { type: "link", title: "About", href: "/about" },
     {
         type: "link",
         title: "Industries",
@@ -45,7 +46,6 @@ const navItems: NavItem[] = [
         title: "Materials",
         href: "/materials"
     },
-    { type: "link", title: "About", href: "/about" },
     { type: "link", title: "Contact", href: "/contact" },
 ]
 
@@ -115,7 +115,7 @@ const Navbar = () => {
                 {/* Logo — always visible */}
                 <div className="flex py-2 shrink-0">
                     <Link href="/">
-                        <Image src="/only-logo.png" alt="Logo" width={56} height={56} />
+                        <Image src="/only-logo.png" loading="eager" alt="Logo" width={56} height={56} />
                     </Link>
                 </div>
 

@@ -1,0 +1,229 @@
+"use client";
+
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
+import { Description, Heading, SectionHeader } from "@/components/shared/SectionHeader";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+const milestones = [
+    {
+        year: "2002",
+        description: "BBL INC was founded in Jamnagar, Gujarat — a small team with a single CNC machine and a commitment to precision that would define every component we'd ever make.",
+        image: "/sectors/posters/agriculture.webp",
+    },
+    {
+        year: "2006",
+        description: "We shipped our first international order, marking the start of our global journey. Precision-machined brass components crossed borders for the first time.",
+        image: "/sectors/posters/automobile.webp",
+    },
+    {
+        year: "2010",
+        description: "Invested in advanced multi-axis CNC machining and expanded our facility, enabling us to take on complex geometries and tighter tolerances across a broader range of materials.",
+        image: "/sectors/posters/aerospace.webp",
+    },
+    {
+        year: "2015",
+        description: "Achieved ISO 9001 and IATF 16949 certifications — formal recognition of the quality management systems we'd been building since day one.",
+        image: "/sectors/posters/oil-gas.webp",
+    },
+    {
+        year: "2020",
+        description: "Established supply chains across 10+ countries, delivering components to Tier-1 suppliers in aerospace, automotive, and oil & gas markets worldwide.",
+        image: "/sectors/posters/chemical.webp",
+    },
+    {
+        year: "2024",
+        description: "With 100,000+ components produced monthly and 150+ clients across 5 continents, we continue to invest in automation and next-generation tooling for the decades ahead.",
+        image: "/sectors/posters/marine.webp",
+    },
+] as const;
+
+// ── Individual milestone row ───────────────────────────────────────────────────
+function MilestoneRow({
+    milestone,
+    index,
+    onActivate,
+}: {
+    milestone: (typeof milestones)[number];
+    index: number;
+    onActivate: (index: number) => void;
+}) {
+    const rowRef = useRef<HTMLDivElement>(null);
+
+    // Fires once when 50% of the row enters the viewport
+    const isInView = useInView(rowRef, { once: false, amount: 1 });
+
+    // Notify parent to switch background image — must be in useEffect
+    // to avoid setState-during-render when React is rendering MilestoneRow
+    useEffect(() => {
+        if (isInView) {
+            onActivate(index);
+        } else if (index === 0) {
+            // First row left the viewport (scrolled back up) → show default image
+            onActivate(-1);
+        }
+    }, [isInView, index, onActivate]);
+
+    const ease = [0.4, 0, 0.2, 1] as const;
+
+    return (
+        <div ref={rowRef} className=" h-[50dvh]">
+            {/* Top divider rule */}
+            <div className="w-full h-px bg-white/10" />
+
+            {/* Row content — capped at 50% width */}
+            <div className="max-w-1/2 py-10 flex h-full items-center gap-0">
+
+                {/* ── Left: year ── */}
+                <div className="w-[35%] flex flex-col gap-2 pr-8">
+
+                    {/* "year" label */}
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.4, ease }}
+                        className="text-gray-400 text-[10px] font-semibold uppercase tracking-[0.3em]"
+                    >
+                        year
+                    </motion.p>
+
+                    {/* Accent bar — grows like the progress dots */}
+                    <motion.div
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: 40 } : { width: 0 }}
+                        transition={{ duration: 0.45, ease }}
+                        className="h-[2px] bg-primary rounded-full"
+                    />
+
+                    {/* Big year number */}
+                    <motion.span
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                        transition={{ duration: 0.45, delay: 0.06, ease }}
+                        className="text-white font-bold leading-none"
+                        style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}
+                    >
+                        {milestone.year}
+                    </motion.span>
+                </div>
+
+                {/* ── Vertical divider — scaleY from top ── */}
+                <motion.div
+                    initial={{ scaleY: 0 }}
+                    animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                    transition={{ duration: 0.4, delay: 0.12, ease }}
+                    style={{ originY: 0 }}
+                    className="w-px bg-white/20 mx-0 self-stretch"
+                />
+
+                {/* ── Right: description ── */}
+                <motion.p
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                    transition={{ duration: 0.45, delay: 0.16, ease }}
+                    className="text-gray-200 text-sm lg:text-base leading-relaxed pl-8 flex items-center"
+                >
+                    {milestone.description}
+                </motion.p>
+            </div>
+        </div>
+    );
+}
+
+// ── Crossfading background ────────────────────────────────────────────────────
+function StickyBackground({ activeIndex }: { activeIndex: number | -1 }) {
+    return (
+        <div className="sticky top-0 h-dvh z-0 mask-t-from-70% overflow-hidden">
+            {/* Stack all images; only active one is visible */}
+            {milestones.map((m, i) => (
+                <AnimatePresence key={m.year}>
+                    {i === activeIndex && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                            className="absolute inset-0"
+                        >
+                            <Image
+                                src={m.image}
+                                alt={m.year}
+                                fill
+                                className="object-cover"
+                                priority={i === 0}
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            ))}
+
+            {/* Default image — shown when no milestone is in view */}
+            <AnimatePresence>
+                {activeIndex === -1 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src="/about-2.webp"
+                            alt="about-2"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Consistent dark overlay — always on top of the images */}
+            <div
+                className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40"
+            />
+        </div>
+    );
+}
+
+// ── Main component ─────────────────────────────────────────────────────────────
+export default function CompanyJourney() {
+    const [activeIndex, setActiveIndex] = useState<number | -1>(-1);
+
+    const handleActivate = useCallback((index: number | -1) => {
+        setActiveIndex(index);
+    }, []);
+
+    return (
+        <Section className="relative bg-black pb-0!">
+            {/* Sticky background — rendered first so it sits behind content */}
+            <Container className="mb-12">
+                <SectionHeader className="text-white justify-between w-full">
+                    <Heading>Our Journey</Heading>
+                    <Description className="text-end text-gray-300">{`Since 2002, we have combined traditional craftsmanship\nwith modern technology to deliver world-class manufacturing.`}</Description>
+                </SectionHeader>
+            </Container>
+            <StickyBackground activeIndex={activeIndex} />
+
+            {/* Scrollable content flows over the sticky bg */}
+            <div className=" relative z-10">
+
+
+                <Container className="pb-24">
+                    {milestones.map((milestone, i) => (
+                        <MilestoneRow
+                            key={milestone.year}
+                            milestone={milestone}
+                            index={i}
+                            onActivate={handleActivate}
+                        />
+                    ))}
+                </Container>
+
+            </div>
+        </Section>
+    );
+}

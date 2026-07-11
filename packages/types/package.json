@@ -1,0 +1,19 @@
+{
+    "name": "@bbl/types",
+    "version": "0.0.0",
+    "private": true,
+    "exports": {
+        ".": "./index.ts",
+        "./*": "./*"
+    },
+    "scripts": {
+        "check-types": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@bbl/typescript-config": "workspace:*",
+        "typescript": "5.9.2"
+    },
+    "dependencies": {
+        "zod": "^4.4.3"
+    }
+}

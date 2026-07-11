@@ -4,9 +4,9 @@ import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
 import { Description, Heading, SectionHeader, Separator } from "@/components/shared/SectionHeader";
+import type { Industry } from "@/constants/industries_data";
 import { motion, Variants } from "motion/react";
 import Image from "next/image";
-import type { Industry } from "../home/industries/IndustryCard";
 
 // ── Per-card animation ────────────────────────────────────────────────────────
 const cardVariants: Variants = {

@@ -2,8 +2,9 @@
 
 import Container from "@/components/layout/Container";
 import { StickyItem } from "@/components/layout/Sticky";
+import { type Industry } from "@/constants/industries_data";
 import { Background } from "./Background";
-import { IndustryCard, type Industry } from "./IndustryCard";
+import { IndustryCard } from "./IndustryCard";
 import { IndustryNav } from "./IndustryNav";
 import { useIndustryScroll } from "./UseIndustryScroll";
 

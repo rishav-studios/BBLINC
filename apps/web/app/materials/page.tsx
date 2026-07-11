@@ -1,7 +1,7 @@
 import CTA from "@/components/pages/home/CTA";
-import { materials } from "@/components/pages/home/materials/materialsData";
 import MaterialsGrid from "@/components/pages/materials/MaterialsGrid";
 import PageHeader from "@/components/shared/PageHeader";
+import { materials } from "@/constants/materials_data";
 
 export default function Page() {
     return (

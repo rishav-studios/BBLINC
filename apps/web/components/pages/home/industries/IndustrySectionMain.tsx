@@ -2,9 +2,9 @@
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Description, Heading, SectionHeader } from "@/components/shared/SectionHeader";
+import { INDUSTRIES_DATA } from "@/constants/industries_data";
 import { motion } from "motion/react";
 import { SectorsSection } from "./IndustrySection";
-import { INDUSTRIES_DATA } from "./industries";
 
 export default function Sectors() {
     return (
@@ -13,7 +13,7 @@ export default function Sectors() {
             <Container className="space-y-8 py-16">
 
 
-                <SectionHeader className="w-full justify-between">
+                <SectionHeader className="w-full justify-between ">
                     <Heading>Industries</Heading>
                     <Description className="text-end">{`We serve a wide range of industries,\nproviding tailored solutions to meet their unique needs.`}</Description>
                 </SectionHeader>

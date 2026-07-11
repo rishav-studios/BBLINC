@@ -18,8 +18,8 @@ const cellVariants: Variants = {
 
 export const WhyUsSection = () => {
     return (
-        <Section className="bg-white min-h-dvh flex flex-col relative overflow-hidden py-20 lg:py-28 text-gray-900">
-            {/* Subtle light blueprint background */}
+        <Section className=" bg-gray-100  flex flex-col overflow-hidden">
+
 
 
             <Container className="relative z-10 flex flex-col h-full">
@@ -47,7 +47,7 @@ export const WhyUsSection = () => {
                         className="lg:col-span-1 lg:row-span-2 relative rounded-3xl overflow-hidden h-[400px] lg:h-full bg-gray-100 shadow-md border border-gray-200/50"
                     >
                         <ReactPlayer
-                            src="/hero-video.mp4"
+                            src="https://asteroidmetal.com/videos/video1Officialmuted.mp4"
                             autoPlay
                             loop
                             muted
@@ -102,7 +102,7 @@ export const WhyUsSection = () => {
                         className="bg-gray-50 border border-gray-200/60 rounded-3xl p-8 lg:p-10 flex flex-col justify-center items-start shadow-sm hover:shadow-md transition-shadow"
                     >
                         <div className="text-primary font-display font-bold leading-none mb-4 tracking-tight" style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}>
-                            <NumberTicker value={50000} suffix="+" delay={0.3} />
+                            <NumberTicker value={100000} suffix="+" delay={0.3} />
                         </div>
                         <h3 className="text-xl lg:text-2xl font-bold mb-2 tracking-tight">Pcs Monthly Capacity</h3>
                         <p className="text-gray-500 text-sm max-w-xs leading-relaxed">Scalable manufacturing capabilities designed to meet aggressive delivery schedules.</p>
@@ -118,7 +118,7 @@ export const WhyUsSection = () => {
                         className="bg-gray-50 border border-gray-200/60 rounded-3xl p-8 lg:p-10 flex flex-col justify-center items-start shadow-sm hover:shadow-md transition-shadow"
                     >
                         <div className="text-primary font-display font-bold leading-none mb-4 tracking-tight flex items-baseline" style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}>
-                            <span className="font-sans text-[0.7em] mr-1 opacity-70">±</span><NumberTicker value={5} suffix="μm" delay={0.4} />
+                            <span className="font-sans text-[0.7em] mr-1">±</span><NumberTicker value={5} suffix="μm" delay={0.4} />
                         </div>
                         <h3 className="text-xl lg:text-2xl font-bold mb-2 tracking-tight">Precision Level</h3>
                         <p className="text-gray-500 text-sm max-w-xs leading-relaxed">Micron-level tolerances achieved consistently across production runs.</p>
