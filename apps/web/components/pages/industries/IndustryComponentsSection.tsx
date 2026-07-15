@@ -9,7 +9,7 @@ type IndustryComponentsSectionProps = {
 
 export default function IndustryComponentsSection({ components }: IndustryComponentsSectionProps) {
     return (
-        <Section className="bg-white text-foreground">
+        <Section>
             <Container>
                 <SectionHeader className="mb-12">
                     <Heading>Components</Heading>
@@ -17,17 +17,18 @@ export default function IndustryComponentsSection({ components }: IndustryCompon
                 </SectionHeader>
 
                 {components.length > 0 ? (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         {components.map((imageSrc, index) => (
                             <div
                                 key={index}
-                                className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gray-100 shadow-sm border border-gray-200"
+                                className="relative aspect-square w-full overflow-hidden rounded-2xl bg-white shadow-xl border border-gray-200 group"
                             >
+                                <div className="absolute w-full h-full inset-0 z-1" />
                                 <Image
                                     src={imageSrc}
                                     alt={`Component ${index + 1}`}
                                     fill
-                                    className="object-cover hover:scale-105 transition-transform duration-500 ease-out"
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
                                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                                 />
                             </div>

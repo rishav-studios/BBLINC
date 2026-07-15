@@ -174,3 +174,7 @@ body::selection {
   background-color: var(--gold);
   color: black;
 }
+
+body {
+  position: relative;
+}

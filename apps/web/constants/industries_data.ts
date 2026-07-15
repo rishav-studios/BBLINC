@@ -76,7 +76,7 @@ export const INDUSTRIES_DATA: Industry[] = [
         description:
             "Precision-machined casings, connector bodies, and structural fittings manufactured to strict military specifications — where consistency and traceability are non-negotiable.",
         stats: [
-            { value: "MIL-SPEC", unit: "Compliant" },
+            { value: "JSS", unit: "Compliant" },
             { value: "100%", unit: "Traceable" },
         ],
         videoSrc: "/sectors/videos/defense.mp4",

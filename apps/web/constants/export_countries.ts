@@ -1,4 +1,4 @@
-import { AU, CA, DE, ES, FlagComponent, FR, GB, ID, IN, JP, KR, PL, RU, SG, TW, US } from 'country-flag-icons/react/1x1';
+import { AU, CA, DE, DK, ES, FI, FlagComponent, FR, GB, ID, IN, PL, PT, RU, SG, US } from 'country-flag-icons/react/1x1';
 
 export type ExportCountry = {
     name: string,
@@ -56,19 +56,19 @@ export const exportCountries: ExportCountry[] = [
         alias: "england"
     },
     {
-        name: "japan",
-        flag: JP,
-        code: "JP"
+        name: "finland",
+        flag: FI,
+        code: "FI"
     },
     {
-        name: "south korea",
-        flag: KR,
-        code: "KR"
+        name: "Portugal",
+        flag: PT,
+        code: "PT"
     },
     {
-        name: "taiwan",
-        flag: TW,
-        code: "TW"
+        name: "Denmark",
+        flag: DK,
+        code: "DK"
     },
     {
         name: "russia",

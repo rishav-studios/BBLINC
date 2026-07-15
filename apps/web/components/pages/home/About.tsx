@@ -62,7 +62,7 @@ const About = () => {
                             <div className="flex flex-col items-center gap-2  w-max ">
                                 <Circle>
                                     <div className=" font-semibold flex">
-                                        <span className="text-5xl">150</span>
+                                        <span className="text-5xl">100</span>
                                         <span className="text-4xl text-primary -translate-y-4">+</span>
                                     </div>
                                 </Circle>

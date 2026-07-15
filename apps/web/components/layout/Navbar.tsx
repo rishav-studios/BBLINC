@@ -1,7 +1,9 @@
 "use client"
+import useIsMobile from "@/hooks/useIsMobile"
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@bbl/ui/components/drawer"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuSeparator, DropdownMenuTrigger } from "@bbl/ui/components/dropdown-menu"
 import { cn } from "@bbl/ui/lib/utils"
-import { RemixiconComponentType, RiMenu3Line } from "@remixicon/react"
+import { RemixiconComponentType, RiCloseLine, RiMenu3Line } from "@remixicon/react"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
@@ -79,6 +81,7 @@ const Navbar = () => {
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [SCROLL_START + 100, SCROLL_END + 160], [380, 18])
     const containerWidth = useTransform(scrollY, [SCROLL_START, SCROLL_END], ["30%", "90%"])
+    const containerWidthForMobile = useTransform(scrollY, [SCROLL_START, SCROLL_END], ["60%", "90%"])
 
     // Derive a numeric width (30 → 90) to detect the 60% threshold
     const widthNum = useTransform(containerWidth, (v) => parseFloat(v))
@@ -87,16 +90,25 @@ const Navbar = () => {
     const pathname = usePathname()
     const isHomePage = pathname === "/"
     const [isExpanded, setIsExpanded] = useState(!isHomePage)
+    const isMobile = useIsMobile()
 
     useEffect(() => {
+        if (isMobile) {
+            setIsExpanded(false)
+            return
+        }
         if (!isHomePage) {
             setIsExpanded(true)
         } else {
             setIsExpanded(widthNum.get() >= 60)
         }
-    }, [isHomePage, widthNum])
+    }, [isHomePage, widthNum, isMobile])
 
     useMotionValueEvent(widthNum, "change", (v) => {
+        if (isMobile) {
+            setIsExpanded(false)
+            return
+        }
         if (!isHomePage) {
             return
         }
@@ -109,7 +121,7 @@ const Navbar = () => {
             className="fixed w-full z-50">
             {/* container */}
             <motion.div
-                style={{ width: isHomePage ? containerWidth : "90%" }}
+                style={{ width: isMobile ? containerWidthForMobile : isHomePage ? containerWidth : "90%" }}
                 className="mx-auto backdrop-blur-md bg-foreground/60 text-white flex items-center justify-between rounded-md overflow-hidden px-2">
 
                 {/* Logo — always visible */}
@@ -168,38 +180,72 @@ const Navbar = () => {
                                 className="p-2 rounded-md hover:bg-white/10 transition-colors"
                             >
 
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger
-                                        className="my-auto flex"
-                                        aria-label="Open menu"
-                                        key="menu-btn">
-                                        <RiMenu3Line className="w-6 h-6 text-white" />
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent
-                                        side="bottom"
-                                        className="mt-6 w-max p-4">
-                                        <DropdownMenuGroup>
-                                            <ul
-                                                key="nav-links"
-                                                className="flex flex-col gap-6 items-center"
-                                            >
+                                {isMobile ? (
+                                    <Drawer direction="right">
+                                        <DrawerTrigger
+                                            className="my-auto flex"
+                                            aria-label="Open menu"
+                                            key="menu-btn">
+                                            <RiMenu3Line className="w-6 h-6 text-white" />
+                                        </DrawerTrigger>
+                                        <DrawerContent className="p-4 w-full! max-w-full! rounded-none! border-none!">
+                                            <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
+                                            <DrawerClose className="absolute top-6 right-6 p-2 rounded-md hover:bg-white/10 transition-colors text-white" aria-label="Close menu">
+                                                <RiCloseLine className="w-6 h-6" />
+                                            </DrawerClose>
+                                            <div className="flex flex-col gap-6 mt-16 items-center">
+                                                <ul
+                                                    key="nav-links"
+                                                    className="flex flex-col gap-6 items-center"
+                                                >
+                                                    {navItems.map((item) => (
+                                                        <li key={item.title}>
+                                                            <NavItemRenderer item={item} />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <div className="h-px w-full bg-border my-2" />
+                                                <CustomLink href="/quote" variant="button-brand">
+                                                    Request a Quote
+                                                    <Arrow variant="black" />
+                                                </CustomLink>
+                                            </div>
+                                        </DrawerContent>
+                                    </Drawer>
+                                ) : (
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger
+                                            className="my-auto flex"
+                                            aria-label="Open menu"
+                                            key="menu-btn">
+                                            <RiMenu3Line className="w-6 h-6 text-white" />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent
+                                            side="bottom"
+                                            className="mt-6 w-max p-4">
+                                            <DropdownMenuGroup>
+                                                <ul
+                                                    key="nav-links"
+                                                    className="flex flex-col gap-6 items-center"
+                                                >
 
-                                                {navItems.map((item) => (
-                                                    <li key={item.title}>
-                                                        <NavItemRenderer item={item} />
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </DropdownMenuGroup>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuGroup>
-                                            <CustomLink href="/quote" variant="button-brand">
-                                                Request a Quote
-                                                <Arrow variant="black" />
-                                            </CustomLink>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                                                    {navItems.map((item) => (
+                                                        <li key={item.title}>
+                                                            <NavItemRenderer item={item} />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </DropdownMenuGroup>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuGroup>
+                                                <CustomLink href="/quote" variant="button-brand">
+                                                    Request a Quote
+                                                    <Arrow variant="black" />
+                                                </CustomLink>
+                                            </DropdownMenuGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                )}
 
                             </motion.div>
                         )}

@@ -65,7 +65,7 @@ export default function AboutIdentity() {
                     <div className="relative flex flex-wrap justify-center gap-6 pt-4">
                         <Fade>
 
-                            <StatCircle value="25+" label="Years of Experience" />
+                            <StatCircle value="26+" label="Years of Experience" />
                         </Fade>
                         <Fade className="translate-y-20">
                             <StatCircle value="1M+" label="Parts per Year" />
@@ -74,10 +74,10 @@ export default function AboutIdentity() {
                             <StatCircle value="8" label="Industries Served" />
                         </Fade>
                         <Fade>
-                            <StatCircle value="150+" label="Clients Worldwide" />
+                            <StatCircle value="100+" label="Clients Worldwide" />
                         </Fade>
                         <Fade className="translate-y-20">
-                            <StatCircle value="40+" label="Countries Exported" />
+                            <StatCircle value="20+" label="Countries Exported" />
                         </Fade>
                         <Fade>
                             <StatCircle value="10+" label="High end CNCs" />

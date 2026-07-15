@@ -19,7 +19,7 @@ const Hero = () => {
                         <div className="flex flex-col gap-4 my-auto">
                             <p>// since 2002 // </p>
                             <p>BBLINC delivers precision-manufactured components across a range of materials, powering mission-critical industries worldwide with reliability and on-time delivery.</p>
-                            <CustomLink href="/capabilities" variant="button-black" className="w-max">
+                            <CustomLink href="/industries" variant="button-black" className="w-max">
                                 Explore Industries
                                 <Arrow variant="primary" />
                             </CustomLink>

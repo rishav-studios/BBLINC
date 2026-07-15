@@ -23,7 +23,7 @@ const ArrowRight = ({ className }: { className?: string }) => (
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 const MaterialsSection = () => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(0) // brass is default selected.;
 
     return (
         <Section

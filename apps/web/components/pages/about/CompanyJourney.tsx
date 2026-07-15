@@ -9,36 +9,56 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const milestones = [
+
     {
         year: "2002",
-        description: "BBL INC was founded in Jamnagar, Gujarat — a small team with a single CNC machine and a commitment to precision that would define every component we'd ever make.",
-        image: "/sectors/posters/agriculture.webp",
+        title: "The Beginning",
+        description: "Started our manufacturing journey with a commitment to precision, quality, and customer satisfaction.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2002.webp"
     },
     {
         year: "2006",
-        description: "We shipped our first international order, marking the start of our global journey. Precision-machined brass components crossed borders for the first time.",
-        image: "/sectors/posters/automobile.webp",
+        title: "Building Strong Foundations",
+        description: "Developed manufacturing expertise, production capabilities, and a skilled workforce.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2006.webp"
     },
     {
-        year: "2010",
-        description: "Invested in advanced multi-axis CNC machining and expanded our facility, enabling us to take on complex geometries and tighter tolerances across a broader range of materials.",
-        image: "/sectors/posters/aerospace.webp",
+        year: "2011",
+        title: "Growth & Engineering Excellence Begins",
+        description: "Expanded capabilities and adopted advanced manufacturing processes and stronger quality systems.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2011.webp"
     },
     {
         year: "2015",
-        description: "Achieved ISO 9001 and IATF 16949 certifications — formal recognition of the quality management systems we'd been building since day one.",
-        image: "/sectors/posters/oil-gas.webp",
+        title: "Engineering Excellence Matures",
+        description: "Strengthened quality systems and deepened engineering capabilities across product lines.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2015.webp"
     },
     {
-        year: "2020",
-        description: "Established supply chains across 10+ countries, delivering components to Tier-1 suppliers in aerospace, automotive, and oil & gas markets worldwide.",
-        image: "/sectors/posters/chemical.webp",
+        year: "2021",
+        title: "Preparing for the Future",
+        description: "Focused on innovation, global opportunities, and creating a brand that reflects our vision for modern manufacturing.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2021.webp"
+    },
+    {
+        year: "2023",
+        title: "BBLINC Launch",
+        description: "Officially launched BBLINC with a mission to provide precision-engineered manufacturing solutions to global industries.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2023.webp"
     },
     {
         year: "2024",
-        description: "With 100,000+ components produced monthly and 150+ clients across 5 continents, we continue to invest in automation and next-generation tooling for the decades ahead.",
-        image: "/sectors/posters/marine.webp",
+        title: "Expanding Global Reach",
+        description: "Serving Aerospace, Automotive, Defense, Agriculture, HVAC, Oil & Gas, Hydraulics, Pneumatics, and Industrial Engineering — 24+ years of experience, 1000+ precision components, and long-term partnerships with global customers worldwide.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2024.webp"
     },
+    {
+        year: "2026",
+        title: "The Future",
+        description: "Continuing to innovate,grow and build long term partnerships with customers worldwide.",
+        imageSrc: "https://rehxhlelmhurdpyzrpmr.supabase.co/storage/v1/object/public/images/company/journey/2026.webp"
+    }
+
 ] as const;
 
 // ── Individual milestone row ───────────────────────────────────────────────────
@@ -120,14 +140,25 @@ function MilestoneRow({
                 />
 
                 {/* ── Right: description ── */}
-                <motion.p
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
-                    transition={{ duration: 0.45, delay: 0.16, ease }}
-                    className="text-gray-200 text-sm lg:text-base leading-relaxed pl-8 flex items-center"
-                >
-                    {milestone.description}
-                </motion.p>
+                <div className="space-y-2">
+
+                    <motion.p
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                        transition={{ duration: 0.45, delay: 0.16, ease }}
+                        className="text-gray-50 text-2xl lg:text-2xl font-medium leading-relaxed pl-8 flex items-center"
+                    >
+                        {milestone.title}
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                        transition={{ duration: 0.45, delay: 0.16, ease }}
+                        className="text-gray-200 text-sm lg:text-base leading-relaxed pl-8 flex items-center"
+                    >
+                        {milestone.description}
+                    </motion.p>
+                </div>
             </div>
         </div>
     );
@@ -149,7 +180,7 @@ function StickyBackground({ activeIndex }: { activeIndex: number | -1 }) {
                             className="absolute inset-0"
                         >
                             <Image
-                                src={m.image}
+                                src={m.imageSrc}
                                 alt={m.year}
                                 fill
                                 className="object-cover"
@@ -183,7 +214,7 @@ function StickyBackground({ activeIndex }: { activeIndex: number | -1 }) {
 
             {/* Consistent dark overlay — always on top of the images */}
             <div
-                className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40"
+                className="absolute inset-0 bg-linear-to-r from-black/80 via-black/80 to-black/60"
             />
         </div>
     );

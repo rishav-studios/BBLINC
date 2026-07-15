@@ -28,7 +28,7 @@ const page = async ({ params }: PageProps) => {
                     color: "white"
                 }} />
             <IndustryComponentsSection components={components} />
-            <CTA className="bg-gray-100" />
+            <CTA className="bg-white" />
         </>
     )
 }
