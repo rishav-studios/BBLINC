@@ -312,10 +312,8 @@ export default function MaterialsGrid({ materials }: { materials: Material[] }) 
                 {/* Section header */}
                 <SectionHeader className="w-full justify-between">
                     <Heading>Our Materials</Heading>
-                    <Description className="text-end">
-                        {
-                            `Eight precision alloys.\nEvery one selected for machinability, durability, and exacting performance.`
-                        }
+                    <Description className="md:text-end">
+                        Eight precision alloys.Every one selected for machinability, durability, and exacting performance.
                     </Description>
                 </SectionHeader>
 

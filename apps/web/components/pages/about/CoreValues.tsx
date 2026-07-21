@@ -182,7 +182,7 @@ function AccordionCard({
                             className="mt-auto flex flex-col gap-3"
                         >
                             {/* Accent line */}
-                            <div className="w-8 h-[2px] bg-primary rounded-full" />
+                            <div className="w-8 h-0.5 bg-primary rounded-full" />
 
                             <h3 className="text-white text-5xl font-semibold tracking-tight leading-none">
                                 {value.title}
@@ -242,7 +242,7 @@ function MobileCard({
                             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                             className="overflow-hidden"
                         >
-                            <div className="w-8 h-[2px] bg-primary rounded-full mb-3" />
+                            <div className="w-8 h-0.5 bg-primary rounded-full mb-3" />
                             <p className="text-white/75 text-sm leading-relaxed">{value.description}</p>
                         </motion.div>
                     )}
@@ -264,8 +264,8 @@ export default function CoreValues() {
                 <SectionHeader>
                     <Heading>Core Values</Heading>
                     <Separator />
-                    <Description>
-                        {`The principles that have guided every decision \nsince our founding — and every component since our first order.`}
+                    <Description className="max-w-70 sm:max-w-md">
+                        The principles that have guided every decision since our founding — and every component since our first order.
                     </Description>
                 </SectionHeader>
 

@@ -5,6 +5,7 @@ import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Description, Heading, SectionHeader } from "@/components/shared/SectionHeader";
 import { materials } from "@/constants/materials_data";
+import useIsMobile from "@/hooks/useIsMobile";
 import { cn } from "@bbl/ui/lib/utils";
 import { useState } from "react";
 
@@ -23,7 +24,8 @@ const ArrowRight = ({ className }: { className?: string }) => (
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 const MaterialsSection = () => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(0) // brass is default selected.;
+    const isMobile = useIsMobile()
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(isMobile ? null : 0) // brass is default selected.on screen bigger than lg (1024px);
 
     return (
         <Section
@@ -80,7 +82,7 @@ const MaterialsSection = () => {
                                 >
                                     <div
                                         className={cn(
-                                            "w-[400px] h-[350px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+                                            "w-100 h-87.5 rounded-2xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
                                             isActive
                                                 ? "opacity-100 translate-y-0 scale-100"
                                                 : "opacity-0 translate-y-10 scale-95"
@@ -185,14 +187,14 @@ const MaterialsSection = () => {
                 <div className="pointer-events-auto mb-10 lg:mb-14">
                     <SectionHeader className="justify-between w-full mt-4">
                         <Heading>Materials</Heading>
-                        <Description className="text-end text-gray-300">{`From raw ingot to finished component\neight metals, one precision partner.`}</Description>
+                        <Description className="md:text-end text-gray-300">{`From raw ingot to finished component\neight metals, one precision partner.`}</Description>
                     </SectionHeader>
                     {/* Decorative rule */}
                     <div className="h-px w-full bg-linear-to-r from-white/25 via-white/10 to-transparent mt-6" />
                 </div>
 
                 {/* ── Desktop: interactive list ── */}
-                <div className="hidden lg:flex flex-col w-[420px] mt-auto pointer-events-auto">
+                <div className="hidden lg:flex flex-col w-105 mt-auto pointer-events-auto">
                     <div className="flex flex-col">
                         {materials.map((mat, index) => {
                             const isActive = hoveredIndex === index;
@@ -214,7 +216,7 @@ const MaterialsSection = () => {
                                     >
                                         {/* Left accent bar */}
                                         <div
-                                            className="shrink-0 w-[2px] rounded-full transition-all duration-300"
+                                            className="shrink-0 w-0.5 rounded-full transition-all duration-300"
                                             style={{
                                                 height: isActive ? "30px" : "10px",
                                                 backgroundColor: isActive

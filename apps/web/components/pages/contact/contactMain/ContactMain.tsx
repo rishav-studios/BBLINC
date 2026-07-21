@@ -8,13 +8,13 @@ export default function ContactMain() {
     return (
         <Section className="bg-[#fafaf8] py-20 min-h-max">
             <Container>
-                <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0">
 
                     {/* Left — Form */}
 
 
                     {/* Right — Info Panel */}
-                    <div className="pr-8 border-r border-black/20">
+                    <div className="lg:pr-8 lg:border-r lg:border-black/20">
 
                         <div className="flex flex-col gap-12 max-w-xs">
                             {/* Address */}

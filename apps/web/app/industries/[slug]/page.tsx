@@ -20,7 +20,7 @@ const page = async ({ params }: PageProps) => {
                 otherTextClassName="text-gray-200"
                 eyeBrowClassName="text-foreground"
                 style={{
-                    backgroundImage: `linear-gradient(to bottom,transparent,rgba(0,0,0,0.50),rgba(0,0,0,0.75)), url("${industry?.imgeSrc}")`,
+                    backgroundImage: `linear-gradient(to bottom,transparent,rgba(0,0,0,0.50),rgba(0,0,0,0.75)), url("${industry?.imageSrc}")`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",

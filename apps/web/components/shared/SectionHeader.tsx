@@ -7,7 +7,7 @@ type SectionHeaderProps = {
 }
 const SectionHeader = ({ children, className }: SectionHeaderProps) => {
     return (
-        <Fade className={cn("flex h-20 items-center gap-6 w-max", className)}>
+        <Fade className={cn("flex flex-col lg:flex-row lg:h-20 lg:items-center gap-1 lg:gap-6 w-max", className)}>
             {children}
         </Fade>
     )
@@ -21,7 +21,7 @@ const Separator = () => {
 
 const Heading = ({ children }: { children: string }) => {
     return (
-        <h2 className="text-6xl">{children}</h2>
+        <h2 className="text-4xl lg:text-6xl">{children}</h2>
     )
 }
 const Description = ({ children, className }: { children: string, className?: string }) => {

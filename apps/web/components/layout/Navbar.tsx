@@ -1,6 +1,6 @@
 "use client"
 import useIsMobile from "@/hooks/useIsMobile"
-import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@bbl/ui/components/drawer"
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@bbl/ui/components/drawer"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuSeparator, DropdownMenuTrigger } from "@bbl/ui/components/dropdown-menu"
 import { cn } from "@bbl/ui/lib/utils"
 import { RemixiconComponentType, RiCloseLine, RiMenu3Line } from "@remixicon/react"
@@ -51,9 +51,9 @@ const navItems: NavItem[] = [
     { type: "link", title: "Contact", href: "/contact" },
 ]
 
-const NavItemRenderer = ({ item }: { item: NavItem }) => {
+const NavItemRenderer = ({ item, className }: { item: NavItem, className?: string }) => {
     if (item.type === "link") {
-        return <CustomLink href={item.href} className="w-max hover:text-current before:bg-gold">{item.title}</CustomLink>
+        return <CustomLink href={item.href} className={cn("w-max hover:text-current before:bg-gold", className)}>{item.title}</CustomLink>
     }
     const [isOpen, setIsOpen] = useState(false)
     return (
@@ -81,7 +81,7 @@ const Navbar = () => {
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [SCROLL_START + 100, SCROLL_END + 160], [380, 18])
     const containerWidth = useTransform(scrollY, [SCROLL_START, SCROLL_END], ["30%", "90%"])
-    const containerWidthForMobile = useTransform(scrollY, [SCROLL_START, SCROLL_END], ["60%", "90%"])
+    const containerWidthForMobile = useTransform(scrollY, [SCROLL_START, SCROLL_END], ["75%", "90%"])
 
     // Derive a numeric width (30 → 90) to detect the 60% threshold
     const widthNum = useTransform(containerWidth, (v) => parseFloat(v))
@@ -117,7 +117,7 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            style={{ y: isHomePage ? y : 18 }}
+            style={{ y: isMobile ? 2 : isHomePage ? y : 18 }}
             className="fixed w-full z-50">
             {/* container */}
             <motion.div
@@ -188,26 +188,23 @@ const Navbar = () => {
                                             key="menu-btn">
                                             <RiMenu3Line className="w-6 h-6 text-white" />
                                         </DrawerTrigger>
-                                        <DrawerContent className="p-4 w-full! max-w-full! rounded-none! border-none!">
-                                            <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
+                                        <DrawerContent className="bg-foreground p-4 w-full! max-w-full! rounded-none! border-none!">
                                             <DrawerClose className="absolute top-6 right-6 p-2 rounded-md hover:bg-white/10 transition-colors text-white" aria-label="Close menu">
                                                 <RiCloseLine className="w-6 h-6" />
                                             </DrawerClose>
-                                            <div className="flex flex-col gap-6 mt-16 items-center">
+                                            <div className="flex flex-col flex-1 gap-6 mt-16">
                                                 <ul
                                                     key="nav-links"
-                                                    className="flex flex-col gap-6 items-center"
+                                                    className="flex flex-col gap-6"
                                                 >
                                                     {navItems.map((item) => (
                                                         <li key={item.title}>
-                                                            <NavItemRenderer item={item} />
+                                                            <NavItemRenderer className="text-white text-2xl font-normal!" item={item} />
                                                         </li>
                                                     ))}
                                                 </ul>
-                                                <div className="h-px w-full bg-border my-2" />
-                                                <CustomLink href="/quote" variant="button-brand">
+                                                <CustomLink href="/quote" variant="button-brand" className="mt-auto">
                                                     Request a Quote
-                                                    <Arrow variant="black" />
                                                 </CustomLink>
                                             </div>
                                         </DrawerContent>

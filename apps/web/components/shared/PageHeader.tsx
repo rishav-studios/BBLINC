@@ -20,7 +20,7 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
                 <Container className="py-16 relative h-full flex flex-col justify-center">
                     <Fade className='flex flex-col items-center'>
                         <EyeBrow className={eyeBrowClassName} text={eyebrowText} />
-                        <h1 className='text-8xl font-semibold text-center'>{title}</h1>
+                        <h1 className='text-6xl lg:text-8xl font-semibold text-center'>{title}</h1>
                     </Fade>
 
 
@@ -28,7 +28,7 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
                     <Fade delay={0.3} className="flex items-end absolute bottom-4  justify-between w-full mt-16 gap-4">
 
                         {/* Left — address */}
-                        <div className="flex flex-col gap-1">
+                        <div className="md:flex hidden flex-col gap-1">
                             <a href="https://maps.app.goo.gl/sGKyVJ9uXdXvq8Ny6" target='_blank'>
                                 <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug", otherTextClassName)}>
                                     Jamnagar, Gujarat, India
@@ -37,7 +37,7 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
                         </div>
 
                         {/* Centre — scroll down indicator */}
-                        <div className="flex flex-col items-center gap-2 shrink-0">
+                        <div className="flex flex-col items-center mx-auto gap-2 shrink-0">
                             <div className="relative h-10 w-0.5 bg-foreground/15 overflow-hidden">
                                 <span
                                     className="absolute top-0 left-0 w-full bg-primary"
@@ -54,7 +54,7 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
                         </div>
 
                         {/* Right — GPS coordinates */}
-                        <div className="flex flex-col items-end gap-1">
+                        <div className="md:flex hidden flex-col items-end gap-1">
                             <a href="https://maps.app.goo.gl/sGKyVJ9uXdXvq8Ny6" target='_blank'>
                                 <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug text-end", otherTextClassName)}>
                                     22.4707° N, 70.0577° E

@@ -24,7 +24,7 @@ const ContactForm = () => {
         console.log(data);
     }
     return (
-        <div className="flex flex-col gap-8 pl-8">
+        <div className="flex flex-col gap-8 lg:pl-8">
             <div>
                 <h2 className="text-4xl font-semibold mb-4">Send an Enquiry</h2>
                 <p className="text-gray-500 leading-relaxed max-w-md">

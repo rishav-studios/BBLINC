@@ -15,7 +15,7 @@ export default function Sectors() {
 
                 <SectionHeader className="w-full justify-between ">
                     <Heading>Industries</Heading>
-                    <Description className="text-end">{`We serve a wide range of industries,\nproviding tailored solutions to meet their unique needs.`}</Description>
+                    <Description className="md:text-end">{`We serve a wide range of industries,\nproviding tailored solutions to meet their unique needs.`}</Description>
                 </SectionHeader>
             </Container>
 

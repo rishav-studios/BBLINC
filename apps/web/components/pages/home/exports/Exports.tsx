@@ -5,6 +5,7 @@ import Section from '@/components/layout/Section'
 import { Description, Heading, SectionHeader, Separator } from '@/components/shared/SectionHeader'
 import { exportCountries, type ExportCountry } from '@/constants/export_countries'
 import { useGlobe } from '@/contexts/GlobeContext'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@bbl/ui/components/select'
 import Globe from './Globe'
 
 const highlightedCountries = exportCountries.map((country: ExportCountry) => country.name)
@@ -28,7 +29,7 @@ const CountryCard = ({ country, onMouseEnter, onMouseLeave }: CountryCardProps) 
 
                 {/* Country name */}
                 <span
-                    className='text-sm font-medium tracking-[0.18em] capitalize text-gray-600 group-hover:text-primary transition-colors duration-300 text-center leading-tight max-w-[80px]'
+                    className='text-sm font-medium tracking-[0.18em] capitalize text-gray-600 group-hover:text-primary transition-colors duration-300 text-center leading-tight max-w-20'
                 >
                     {country.alias ? country.alias : country.name}
                 </span>
@@ -48,15 +49,15 @@ const Exports = () => {
                 <Globe highlightedCountries={highlightedCountries} selectedCountry={selectedCountry} />
             </div>
 
-            <Container className='relative space-y-12 z-2 max-w-xl mx-0 ml-[5%]'>
+            <Container className='relative gap-12 z-2 flex flex-col h-full mx-0 ml-[5%]'>
                 <SectionHeader>
                     <Heading>Exports</Heading>
                     <Separator />
-                    <Description>{`With a robust global reach, we serve a diverse clientele\nacross multiple continents, delivering exceptional value worldwide.`}</Description>
+                    <Description className='max-w-70 sm:max-w-md'>With a robust global reach, we serve a diverse clientele across multiple continents, delivering exceptional value worldwide.</Description>
                 </SectionHeader>
 
-                {/* countries grid */}
-                <div className='grid grid-cols-3 gap-6 '>
+                {/* countries grid – visible md+ */}
+                <div className='md:grid hidden grid-cols-3 gap-6 '>
                     {
                         exportCountries.map((country: ExportCountry) => (
                             <CountryCard
@@ -67,6 +68,29 @@ const Exports = () => {
                             />
                         ))
                     }
+                </div>
+
+                {/* countries select – visible below md */}
+                <div className='md:hidden mt-auto'>
+                    <Select
+                        value={selectedCountry ?? ''}
+                        onValueChange={(value) => setSelectedCountry(value || null)}
+                    >
+                        <SelectTrigger className='w-full'>
+                            <SelectValue placeholder='Select a country' />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {exportCountries.map((country: ExportCountry) => (
+                                <SelectItem key={country.name} value={country.name}>
+                                    <country.flag className='w-5 h-5 rounded-full inline-block' />
+                                    <span className='capitalize'>{country.alias ?? country.name}</span>
+                                </SelectItem>
+                            ))}
+                            <SelectItem key="none" value="">
+                                <span className='capitalize'>Select a country</span>
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
             </Container>
         </Section>

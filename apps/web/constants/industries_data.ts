@@ -4,12 +4,15 @@ export type Industry = {
     slug: string;
     description: string;
     stats: { value: string; unit: string }[];
-    videoSrc: string;
+    frameSrc: {
+        dir: string;
+        prefix: string;
+        count: number;
+        padDigits: number;
+    };
     posterSrc: string;
-    imgeSrc: string;
-};
-
-
+    imageSrc?: string;
+}
 
 export const INDUSTRIES_DATA: Industry[] = [
     {
@@ -22,9 +25,14 @@ export const INDUSTRIES_DATA: Industry[] = [
             { value: "±0.005", unit: "mm Tolerance" },
             { value: "AS9100", unit: "Certified" },
         ],
-        videoSrc: "/sectors/videos/aerospace.mp4",
+        imageSrc: "/sectors/images/aerospace.webp",
         posterSrc: "/sectors/posters/aerospace.webp",
-        imgeSrc: "/sectors/images/aerospace.webp"
+        frameSrc: {
+            dir: "/sectors/frames/aerospace",
+            prefix: "frame_",
+            count: 64,
+            padDigits: 4,
+        },
 
     },
     {
@@ -37,9 +45,14 @@ export const INDUSTRIES_DATA: Industry[] = [
             { value: "IATF", unit: "16949 Certified" },
             { value: "1M+", unit: "Parts / Year" },
         ],
-        videoSrc: "/sectors/videos/automobile.mp4",
+        imageSrc: "/sectors/images/automobile.webp",
         posterSrc: "/sectors/posters/automobile.webp",
-        imgeSrc: "/sectors/images/automobile.webp"
+        frameSrc: {
+            dir: "/sectors/frames/automobile",
+            prefix: "frame_",
+            count: 65,
+            padDigits: 4,
+        },
     },
     {
         id: "agriculture",
@@ -51,23 +64,14 @@ export const INDUSTRIES_DATA: Industry[] = [
             { value: "20+", unit: "Years Service Life" },
             { value: "IP65", unit: "Weather Sealed" },
         ],
-        videoSrc: "/sectors/videos/agriculture.mp4",
         posterSrc: "/sectors/posters/agriculture.webp",
-        imgeSrc: "/sectors/images/agriculture.webp"
-    },
-    {
-        id: "chemical",
-        label: "Chemical",
-        slug: "chemical",
-        description:
-            "Valve bodies, dosing components, and fluid-transfer fittings crafted from dezincification-resistant brass, designed to hold up against corrosive chemical media in demanding processing environments.",
-        stats: [
-            { value: "DZR", unit: "Brass Alloy" },
-            { value: "PN40", unit: "Pressure Rated" },
-        ],
-        videoSrc: "/sectors/videos/chemical.mp4",
-        posterSrc: "/sectors/posters/chemical.webp",
-        imgeSrc: "/sectors/images/chemical.webp"
+        imageSrc: "/sectors/images/agriculture.webp",
+        frameSrc: {
+            dir: "/sectors/frames/agriculture",
+            prefix: "frame_",
+            count: 64,
+            padDigits: 4,
+        },
     },
     {
         id: "defense",
@@ -79,38 +83,16 @@ export const INDUSTRIES_DATA: Industry[] = [
             { value: "JSS", unit: "Compliant" },
             { value: "100%", unit: "Traceable" },
         ],
-        videoSrc: "/sectors/videos/defense.mp4",
         posterSrc: "/sectors/posters/defense.webp",
-        imgeSrc: "/sectors/images/defense.webp"
+        imageSrc: "/sectors/images/defense.webp",
+        frameSrc: {
+            dir: "/sectors/frames/defense",
+            prefix: "frame_",
+            count: 52,
+            padDigits: 4,
+        },
     },
-    {
-        id: "hvac",
-        label: "HVAC",
-        slug: "hvac",
-        description:
-            "Refrigerant fittings, valve components, and manifold parts precision-turned for leak-tight performance across heating, ventilation, and climate control systems worldwide.",
-        stats: [
-            { value: "Leak-Tight", unit: "Sealing" },
-            { value: "ISO 9001", unit: "Certified" },
-        ],
-        videoSrc: "/sectors/videos/hvac.mp4",
-        posterSrc: "/sectors/posters/hvac.webp",
-        imgeSrc: "/sectors/images/hvac.webp"
-    },
-    {
-        id: "marine",
-        label: "Marine",
-        slug: "marine",
-        description:
-            "Through-hull fittings, propeller components, and seawater-grade hardware machined from naval brass — engineered to resist corrosion in the harshest marine conditions.",
-        stats: [
-            { value: "Naval", unit: "Grade Brass" },
-            { value: "Salt-Spray", unit: "Tested" },
-        ],
-        videoSrc: "/sectors/videos/marine.mp4",
-        posterSrc: "/sectors/posters/marine.webp",
-        imgeSrc: "/sectors/images/marine.webp"
-    },
+
     {
         id: "oil-gas",
         label: "Oil & Gas",
@@ -121,8 +103,58 @@ export const INDUSTRIES_DATA: Industry[] = [
             { value: "600", unit: "Bar Rated" },
             { value: "DZR", unit: "Brass Alloy" },
         ],
-        videoSrc: "/sectors/videos/oil-gas.mp4",
         posterSrc: "/sectors/posters/oil-gas.webp",
-        imgeSrc: "/sectors/images/oil-gas.webp"
+        imageSrc: "/sectors/images/oil-gas.webp",
+        frameSrc: {
+            dir: "/sectors/frames/oil-gas",
+            prefix: "frame_",
+            count: 65,
+            padDigits: 4,
+        },
     },
 ];
+
+// {
+//     id: "chemical",
+//     label: "Chemical",
+//     slug: "chemical",
+//     description:
+//         "Valve bodies, dosing components, and fluid-transfer fittings crafted from dezincification-resistant brass, designed to hold up against corrosive chemical media in demanding processing environments.",
+//     stats: [
+//         { value: "DZR", unit: "Brass Alloy" },
+//         { value: "PN40", unit: "Pressure Rated" },
+//     ],
+//     videoSrc: "/sectors/videos/chemical.mp4",
+//     posterSrc: "/sectors/posters/chemical.webp",
+//     imgeSrc: "/sectors/images/chemical.webp"
+// },
+
+
+// {
+//     id: "hvac",
+//     label: "HVAC",
+//     slug: "hvac",
+//     description:
+//     "Refrigerant fittings, valve components, and manifold parts precision-turned for leak-tight performance across heating, ventilation, and climate control systems worldwide.",
+//     stats: [
+//     { value: "Leak-Tight", unit: "Sealing" },
+//     { value: "ISO 9001", unit: "Certified" },
+//     ],
+//     videoSrc: "/sectors/videos/hvac.mp4",
+//     posterSrc: "/sectors/posters/hvac.webp",
+//     imgeSrc: "/sectors/images/hvac.webp"
+//     },
+//     {
+//     id: "marine",
+//     label: "Marine",
+//     slug: "marine",
+//     description:
+//     "Through-hull fittings, propeller components, and seawater-grade hardware machined from naval brass — engineered to resist corrosion in the harshest marine conditions.",
+//     stats: [
+//     { value: "Naval", unit: "Grade Brass" },
+//     { value: "Salt-Spray", unit: "Tested" },
+//     ],
+//     videoSrc: "/sectors/videos/marine.mp4",
+//     posterSrc: "/sectors/posters/marine.webp",
+//     imgeSrc: "/sectors/images/marine.webp"
+//     },

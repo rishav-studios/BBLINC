@@ -74,7 +74,7 @@ function MilestoneRow({
     const rowRef = useRef<HTMLDivElement>(null);
 
     // Fires once when 50% of the row enters the viewport
-    const isInView = useInView(rowRef, { once: false, amount: 1 });
+    const isInView = useInView(rowRef, { once: false, amount: 0.6 });
 
     // Notify parent to switch background image — must be in useEffect
     // to avoid setState-during-render when React is rendering MilestoneRow
@@ -90,15 +90,15 @@ function MilestoneRow({
     const ease = [0.4, 0, 0.2, 1] as const;
 
     return (
-        <div ref={rowRef} className=" h-[50dvh]">
+        <div ref={rowRef} className="min-h-[40dvh] md:h-[50dvh]">
             {/* Top divider rule */}
             <div className="w-full h-px bg-white/10" />
 
-            {/* Row content — capped at 50% width */}
-            <div className="max-w-1/2 py-10 flex h-full items-center gap-0">
+            {/* Row content — full width on mobile, half on md+ */}
+            <div className="w-full md:max-w-1/2 py-6 md:py-10 flex h-full items-center gap-0">
 
                 {/* ── Left: year ── */}
-                <div className="w-[35%] flex flex-col gap-2 pr-8">
+                <div className="w-[40%] md:w-[35%] flex flex-col gap-1.5 md:gap-2 pr-4 md:pr-8">
 
                     {/* "year" label */}
                     <motion.p
@@ -115,7 +115,7 @@ function MilestoneRow({
                         initial={{ width: 0 }}
                         animate={isInView ? { width: 40 } : { width: 0 }}
                         transition={{ duration: 0.45, ease }}
-                        className="h-[2px] bg-primary rounded-full"
+                        className="h-0.5 bg-primary rounded-full"
                     />
 
                     {/* Big year number */}
@@ -124,7 +124,7 @@ function MilestoneRow({
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                         transition={{ duration: 0.45, delay: 0.06, ease }}
                         className="text-white font-bold leading-none"
-                        style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}
+                        style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
                     >
                         {milestone.year}
                     </motion.span>
@@ -140,13 +140,13 @@ function MilestoneRow({
                 />
 
                 {/* ── Right: description ── */}
-                <div className="space-y-2">
+                <div className="space-y-1 md:space-y-2">
 
                     <motion.p
                         initial={{ opacity: 0, x: 10 }}
                         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
                         transition={{ duration: 0.45, delay: 0.16, ease }}
-                        className="text-gray-50 text-2xl lg:text-2xl font-medium leading-relaxed pl-8 flex items-center"
+                        className="text-gray-50 text-base sm:text-lg md:text-2xl font-medium leading-snug md:leading-relaxed pl-4 md:pl-8 flex items-center"
                     >
                         {milestone.title}
                     </motion.p>
@@ -154,7 +154,7 @@ function MilestoneRow({
                         initial={{ opacity: 0, x: 10 }}
                         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
                         transition={{ duration: 0.45, delay: 0.16, ease }}
-                        className="text-gray-200 text-sm lg:text-base leading-relaxed pl-8 flex items-center"
+                        className="text-gray-200 text-xs sm:text-sm lg:text-base leading-relaxed pl-4 md:pl-8 flex items-center"
                     >
                         {milestone.description}
                     </motion.p>
@@ -214,7 +214,7 @@ function StickyBackground({ activeIndex }: { activeIndex: number | -1 }) {
 
             {/* Consistent dark overlay — always on top of the images */}
             <div
-                className="absolute inset-0 bg-linear-to-r from-black/80 via-black/80 to-black/60"
+                className="absolute inset-0 bg-black/75 md:bg-linear-to-r md:from-black/50 md:via-black/30 md:to-black/10"
             />
         </div>
     );
@@ -234,7 +234,7 @@ export default function CompanyJourney() {
             <Container className="mb-12">
                 <SectionHeader className="text-white justify-between w-full">
                     <Heading>Our Journey</Heading>
-                    <Description className="text-end text-gray-300">{`Since 2002, we have combined traditional craftsmanship\nwith modern technology to deliver world-class manufacturing.`}</Description>
+                    <Description className="md:text-end text-gray-300">{`Since 2002, we have combined traditional craftsmanship\nwith modern technology to deliver world-class manufacturing.`}</Description>
                 </SectionHeader>
             </Container>
             <StickyBackground activeIndex={activeIndex} />

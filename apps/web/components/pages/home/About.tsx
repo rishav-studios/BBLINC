@@ -19,7 +19,7 @@ const About = () => {
             <Container className="relative z-2">
 
                 {/* ── Row 1: Header bar ── */}
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                     <SectionHeader>
                         <Heading>About</Heading>
                         <Separator />
@@ -28,7 +28,7 @@ const About = () => {
                         </Description>
                     </SectionHeader>
                     <Fade>
-                        <CustomLink href="/about" variant="button-brand" className="h-max">
+                        <CustomLink href="/about" variant="button-brand" className="hidden lg:flex h-max">
                             About us
                             <Arrow variant="black" />
                         </CustomLink>
@@ -36,15 +36,15 @@ const About = () => {
                 </div>
 
                 {/* ── Row 2: Scroll-reveal statement ── */}
-                <div className="py-16 grid grid-cols-3 gap-12">
+                <div className="py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-                    <div className="col-span-2">
+                    <div className="lg:col-span-2">
 
-                        <TextRevealOnScroll as="div" className="text-4xl leading-snug">
+                        <TextRevealOnScroll as="div" className="text-xl md:text-2xl lg:text-4xl leading-snug">
                             {`We are precision engineering partner commited to transforming ideas into world class metal components. Our passion for the innovation, technical excellence, and uncompromising quality enables us to deliver solutions that power industries across the globe.`}
                         </TextRevealOnScroll>
                     </div>
-                    <div className="flex">
+                    <div className="flex flex-col md:flex-row gap-12 lg:gap-0">
                         <Fade>
 
                             <div className="flex flex-col w-max items-center gap-2">
@@ -57,7 +57,7 @@ const About = () => {
                                 <Description>Years of experience</Description>
                             </div>
                         </Fade>
-                        <Fade delay={0.5} className="ml-auto translate-y-24">
+                        <Fade delay={0.5} className="ml-auto md:ml-0 lg:translate-y-24">
 
                             <div className="flex flex-col items-center gap-2  w-max ">
                                 <Circle>
@@ -74,7 +74,7 @@ const About = () => {
 
                 </div>
 
-                <Fade className="w-full flex justify-center items-center mt-24">
+                <Fade className="w-full flex justify-center items-center lg:mt-24">
                     <img className="w-full" src="/exploded-black.webp" />
                 </Fade>
 

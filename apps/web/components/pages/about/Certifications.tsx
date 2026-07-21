@@ -65,7 +65,7 @@ export default function Certifications() {
                 {/* Header */}
                 <SectionHeader className="justify-between w-full">
                     <Heading>Certifications</Heading>
-                    <Description className="text-end text-gray-700">
+                    <Description className="md:text-end text-gray-700">
                         {`Every certification is a promise kept — \nto our clients, their clients, and the end user.`}
                     </Description>
                 </SectionHeader>

@@ -79,7 +79,7 @@ export const IndustryCard = ({ Industry, isVisible }: IndustryCardProps) => {
                     {/* Industry label */}
                     <motion.h2
                         variants={childVariants}
-                        className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-none text-white uppercase tracking-tight mb-4"
+                        className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-none text-white uppercase tracking-tight mb-4"
                         style={{ textShadow: "0 2px 32px rgba(0,0,0,0.45)" }}
                     >
                         {Industry.label}

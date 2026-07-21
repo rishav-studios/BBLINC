@@ -3,7 +3,7 @@
 import Container from "@/components/layout/Container";
 import { StickyItem } from "@/components/layout/Sticky";
 import { type Industry } from "@/constants/industries_data";
-import { Background } from "./Background";
+import { SectorBackground as Background } from "./Background";
 import { IndustryCard } from "./IndustryCard";
 import { IndustryNav } from "./IndustryNav";
 import { useIndustryScroll } from "./UseIndustryScroll";
@@ -36,13 +36,7 @@ export const SectorsSection = ({
             className="relative w-full"
             aria-label="Industries we serve"
         >
-            {/* ── Preload adjacent videos ── */}
-            {prevIndustry && (
-                <link rel="preload" as="video" href={prevIndustry.videoSrc} />
-            )}
-            {nextIndustry && (
-                <link rel="preload" as="video" href={nextIndustry.videoSrc} />
-            )}
+
 
             <StickyItem className="overflow-hidden">
 
@@ -50,8 +44,8 @@ export const SectorsSection = ({
                 <Background
                     key={activeIndustry.id}
                     sectorKey={activeIndustry.id}
-                    src={activeIndustry.videoSrc}
-                    poster={activeIndustry.posterSrc}
+                    frameSrc={activeIndustry.frameSrc}
+                    posterSrc={activeIndustry.posterSrc}
                     scrollProgress={IndustryProgress}
                 />
 

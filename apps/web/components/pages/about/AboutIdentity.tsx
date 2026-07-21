@@ -28,7 +28,7 @@ function StatCircle({ value, label, className = "" }: {
                     </span>
                 </div>
             </div>
-            <p className="text-xs text-gray-500 uppercase tracking-widest text-center leading-snug max-w-[120px]">
+            <p className="text-xs text-gray-500 uppercase tracking-widest text-center leading-snug max-w-30">
                 {label}
             </p>
         </Fade>
@@ -47,7 +47,7 @@ export default function AboutIdentity() {
 
                             <EyeBrow text="Our Story" />
 
-                            <p className="text-3xl leading-snug text-justify">
+                            <p className="text-xl md:text-2xl lg:text-3xl leading-snug lg:text-justify">
                                 {`We are a precision engineering partner committed to transforming raw metal into world-class components. Our passion for innovation, technical excellence, and uncompromising quality enables us to deliver solutions that power industries across the globe — from aerospace cockpits to agricultural fields.`}
                             </p>
                         </Fade>
@@ -67,7 +67,7 @@ export default function AboutIdentity() {
 
                             <StatCircle value="26+" label="Years of Experience" />
                         </Fade>
-                        <Fade className="translate-y-20">
+                        <Fade className="xl:translate-y-20">
                             <StatCircle value="1M+" label="Parts per Year" />
                         </Fade>
                         <Fade>
@@ -76,7 +76,7 @@ export default function AboutIdentity() {
                         <Fade>
                             <StatCircle value="100+" label="Clients Worldwide" />
                         </Fade>
-                        <Fade className="translate-y-20">
+                        <Fade className="xl:translate-y-20">
                             <StatCircle value="20+" label="Countries Exported" />
                         </Fade>
                         <Fade>
