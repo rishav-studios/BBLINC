@@ -1,3 +1,4 @@
+import Fade from '@/components/animations/Fade'
 import Container from '@/components/layout/Container'
 import Section from '@/components/layout/Section'
 import { Arrow, CustomLink } from '@/components/shared/clickables/CustomLink'
@@ -26,9 +27,9 @@ const CTA = ({
 
 
     return (
-        <Section className={cn('bg-white', className)}>
-            <Container>
-                <div
+        <Section className={cn('bg-white flex', className)}>
+            <Container className='my-auto'>
+                <Fade
                     className="relative z-20 flex flex-col items-center justify-center mx-auto text-center px-4 w-full max-w-5xl"
                 >
                     <h2 className={cn("text-4xl md:text-6xl lg:text-8xl font-bold mb-6 ", titleClassName)}>
@@ -48,7 +49,7 @@ const CTA = ({
 
                         <CustomLink href="/contact" variant="outline-black" className="text-xl py-3 px-10 font-semibold">Contact</CustomLink>
                     </div>
-                </div>
+                </Fade>
             </Container>
         </Section>
     )

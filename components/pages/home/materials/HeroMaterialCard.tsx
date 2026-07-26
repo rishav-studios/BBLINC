@@ -1,9 +1,9 @@
 "use client";
 
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
+import type { Material } from "@/constants/materials_data";
 import { motion, type Variants } from "motion/react";
 import { useState } from "react";
-import type { Material } from "./materialsData";
 
 type HeroMaterialCardProps = {
     material: Material;
@@ -68,7 +68,7 @@ export const HeroMaterialCard = ({ material }: HeroMaterialCardProps) => {
 
             {/* Top accent border */}
             <div
-                className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl"
+                className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
                 style={{ backgroundColor: material.accent }}
             />
 

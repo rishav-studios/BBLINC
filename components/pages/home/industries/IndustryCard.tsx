@@ -1,24 +1,14 @@
 "use client";
 
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
+import { Industry } from "@/constants/industries_data";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useState } from "react";
-
-export type Industry = {
-    id: string;
-    label: string;
-    slug: string;
-    description: string;
-    stats: { value: string; unit: string }[];
-    videoSrc: string;
-    posterSrc: string;
-};
 
 type IndustryCardProps = {
     Industry: Industry;
     isVisible: boolean;
 };
-
 // ── Container: spring-physics entry so it feels physically grounded ──────────
 const cardVariants: Variants = {
     hidden: { opacity: 0, y: 32 },
@@ -89,7 +79,7 @@ export const IndustryCard = ({ Industry, isVisible }: IndustryCardProps) => {
                     {/* Industry label */}
                     <motion.h2
                         variants={childVariants}
-                        className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-none text-white uppercase tracking-tight mb-4"
+                        className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-none text-white uppercase tracking-tight mb-4"
                         style={{ textShadow: "0 2px 32px rgba(0,0,0,0.45)" }}
                     >
                         {Industry.label}
@@ -139,7 +129,7 @@ export const IndustryCard = ({ Industry, isVisible }: IndustryCardProps) => {
                         onMouseLeave={() => setIsHovered(false)}
                     >
                         <CustomLink
-                            href={`/Industrys/${Industry.slug}`}
+                            href={`/industries/${Industry.slug}`}
                             variant="button-white"
                             className="w-max hover:bg-primary hover:text-background transition-colors duration-300">
 

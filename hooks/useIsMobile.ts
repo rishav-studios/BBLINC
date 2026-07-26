@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useIsMobile = (breakpoint: number = 768): boolean => {
+const useIsMobile = (breakpoint: number = 1024): boolean => {
     // Initialize with undefined to avoid SSR hydration mismatch
     const [isMobile, setIsMobile] = useState<boolean>(() => {
         // Only run on client

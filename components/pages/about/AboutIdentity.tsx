@@ -1,17 +1,18 @@
 "use client";
 
+import Fade from "@/components/animations/Fade";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import EyeBrow from "@/components/shared/EyeBrow";
 import { NumberTicker } from "@/components/shared/NumberTicker";
-import { TextRevealOnScroll } from "@/components/shared/TextReveal";
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
+import { cn } from "@bbl/ui/lib/utils";
 
 // ── Dashed circle stat (reuses the pattern from home About.tsx) ───────────────
-function StatCircle({ value, label, offset = false }: {
+function StatCircle({ value, label, className = "" }: {
     value: string;
     label: string;
-    offset?: boolean;
+    className?: string;
 }) {
     // Parse the numeric part for NumberTicker, keep suffix separate
     const match = value.match(/^(\d+)(.*)$/);
@@ -19,7 +20,7 @@ function StatCircle({ value, label, offset = false }: {
     const suffix = match ? match[2] ?? "" : value;
 
     return (
-        <div className={`flex flex-col items-center gap-2 w-max ${offset ? "translate-y-20" : ""}`}>
+        <Fade className={cn("flex flex-col items-center gap-2 w-max", className)}>
             <div className="w-40 aspect-square border border-primary border-dashed rounded-full flex items-center justify-center">
                 <div className="font-semibold flex items-start">
                     <span className="text-4xl leading-none">
@@ -27,39 +28,60 @@ function StatCircle({ value, label, offset = false }: {
                     </span>
                 </div>
             </div>
-            <p className="text-xs text-gray-500 uppercase tracking-widest text-center leading-snug max-w-[120px]">
+            <p className="text-xs text-gray-500 uppercase tracking-widest text-center leading-snug max-w-30">
                 {label}
             </p>
-        </div>
+        </Fade>
     );
 }
 
 export default function AboutIdentity() {
     return (
-        <Section className="bg-white">
-            <Container>
+        <Section className="bg-gray-100">
+            <Container className="relative z-2">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
                     {/* Left — narrative */}
-                    <div className="flex flex-col gap-8">
-                        <EyeBrow text="Our Story" />
+                    <div className="space-y-8">
+                        <Fade className="space-y-8">
 
-                        <TextRevealOnScroll as="div" className="text-3xl leading-snug text-foreground">
-                            {`We are a precision engineering partner committed to transforming raw metal into world-class components. Our passion for innovation, technical excellence, and uncompromising quality enables us to deliver solutions that power industries across the globe — from aerospace cockpits to agricultural fields.`}
-                        </TextRevealOnScroll>
+                            <EyeBrow text="Our Story" />
 
-                        <CustomLink href="/contact" variant="button-brand" className="w-max mt-4">
-                            Work with us
-                            <Arrow variant="black" />
-                        </CustomLink>
+                            <p className="text-xl md:text-2xl lg:text-3xl leading-snug lg:text-justify">
+                                {`We are a precision engineering partner committed to transforming raw metal into world-class components. Our passion for innovation, technical excellence, and uncompromising quality enables us to deliver solutions that power industries across the globe — from aerospace cockpits to agricultural fields.`}
+                            </p>
+                        </Fade>
+
+                        <Fade>
+
+                            <CustomLink href="/contact" variant="button-brand" className="w-max mt-4">
+                                Work with us
+                                <Arrow variant="black" />
+                            </CustomLink>
+                        </Fade>
                     </div>
 
                     {/* Right — 2×2 offset stat circles */}
-                    <div className="relative flex flex-wrap justify-center gap-x-6 gap-y-0 pt-4 pb-24">
-                        <StatCircle value="25+" label="Years of Experience" />
-                        <StatCircle value="1M+" label="Parts per Year" offset />
-                        <StatCircle value="8"   label="Industries Served" />
-                        <StatCircle value="40+" label="Countries Exported" offset />
+                    <div className="relative flex flex-wrap justify-center gap-6 pt-4">
+                        <Fade>
+
+                            <StatCircle value="26+" label="Years of Experience" />
+                        </Fade>
+                        <Fade className="xl:translate-y-20">
+                            <StatCircle value="1M+" label="Parts per Year" />
+                        </Fade>
+                        <Fade>
+                            <StatCircle value="8" label="Industries Served" />
+                        </Fade>
+                        <Fade>
+                            <StatCircle value="100+" label="Clients Worldwide" />
+                        </Fade>
+                        <Fade className="xl:translate-y-20">
+                            <StatCircle value="20+" label="Countries Exported" />
+                        </Fade>
+                        <Fade>
+                            <StatCircle value="10+" label="High end CNCs" />
+                        </Fade>
                     </div>
 
                 </div>

@@ -1,34 +1,43 @@
 import { BackgroundBeamsWithCollision } from '@bbl/ui/components/ui/background-beams-with-collision';
+import { cn } from '@bbl/ui/lib/utils';
+import { CSSProperties } from 'react';
+import Fade from '../animations/Fade';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
 import EyeBrow from './EyeBrow';
 type PageHeaderProps = {
     title: string;
     eyebrowText: string;
+    style?: CSSProperties;
+    eyeBrowClassName?: string;
+    otherTextClassName?: string;
+    className?: string;
 }
-const PageHeader = ({ title, eyebrowText }: PageHeaderProps) => {
+const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTextClassName = "", className = "" }: PageHeaderProps) => {
     return (
-        <Section className='py-0! lg:py-0! min-h-max'>
+        <Section className={cn('py-0! lg:py-0! min-h-max', className)} style={style}>
             <BackgroundBeamsWithCollision className="h-[70dvh]!">
                 <Container className="py-16 relative h-full flex flex-col justify-center">
-                    <div className='flex flex-col items-center'>
-                        <EyeBrow text={eyebrowText} />
-                        <h1 className='text-8xl font-semibold text-center'>{title}</h1>
-                    </div>
+                    <Fade className='flex flex-col items-center'>
+                        <EyeBrow className={eyeBrowClassName} text={eyebrowText} />
+                        <h1 className='text-6xl lg:text-8xl font-semibold text-center'>{title}</h1>
+                    </Fade>
 
 
                     {/* ── Bottom info strip ── */}
-                    <div className="flex items-end absolute bottom-4  justify-between w-full mt-16 gap-4">
+                    <Fade delay={0.3} className="flex items-end absolute bottom-4  justify-between w-full mt-16 gap-4">
 
                         {/* Left — address */}
-                        <div className="flex flex-col gap-1">
-                            <p className="text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug">
-                                Jamnagar, Gujarat, India
-                            </p>
+                        <div className="md:flex hidden flex-col gap-1">
+                            <a href="https://maps.app.goo.gl/X7yP2VG1YgezafVe7" target='_blank'>
+                                <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug", otherTextClassName)}>
+                                    Jamnagar, Gujarat, India
+                                </p>
+                            </a>
                         </div>
 
                         {/* Centre — scroll down indicator */}
-                        <div className="flex flex-col items-center gap-2 shrink-0">
+                        <div className="flex flex-col items-center mx-auto gap-2 shrink-0">
                             <div className="relative h-10 w-0.5 bg-foreground/15 overflow-hidden">
                                 <span
                                     className="absolute top-0 left-0 w-full bg-primary"
@@ -38,22 +47,21 @@ const PageHeader = ({ title, eyebrowText }: PageHeaderProps) => {
                                     }}
                                 />
                             </div>
-                            <span className="text-[0.6rem] uppercase tracking-[0.18em] text-foreground/35 font-medium">
+                            <span className={cn("text-[0.6rem] uppercase tracking-[0.18em] text-foreground/60 font-medium", otherTextClassName)}>
                                 Scroll
                             </span>
-                            {/* Animated track + travelling dot */}
-                            {/* Chevron */}
 
                         </div>
 
                         {/* Right — GPS coordinates */}
-                        <div className="flex flex-col items-end gap-1">
-
-                            <p className="text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug text-end">
-                                22.4707° N, 70.0577° E
-                            </p>
+                        <div className="md:flex hidden flex-col items-end gap-1">
+                            <a href="https://maps.app.goo.gl/X7yP2VG1YgezafVe7" target='_blank'>
+                                <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug text-end", otherTextClassName)}>
+                                    22.4154131° N,70.043864,103° E
+                                </p>
+                            </a>
                         </div>
-                    </div>
+                    </Fade>
 
                     {/* Keyframe for the travelling scroll bar */}
                     <style>{`

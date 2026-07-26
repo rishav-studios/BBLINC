@@ -1,11 +1,13 @@
 "use client";
 
+import Fade from "@/components/animations/Fade";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Description, Heading, SectionHeader } from "@/components/shared/SectionHeader";
+import { MATERIALS_DATA as materials } from "@/constants/materials_data";
+import useIsMobile from "@/hooks/useIsMobile";
 import { cn } from "@bbl/ui/lib/utils";
 import { useState } from "react";
-import { materials } from "./materialsData";
 
 // ─── Arrow icon ───────────────────────────────────────────────────────────────
 const ArrowRight = ({ className }: { className?: string }) => (
@@ -22,7 +24,8 @@ const ArrowRight = ({ className }: { className?: string }) => (
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 const MaterialsSection = () => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const isMobile = useIsMobile()
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(isMobile ? null : 0) // brass is default selected.on screen bigger than lg (1024px);
 
     return (
         <Section
@@ -41,7 +44,7 @@ const MaterialsSection = () => {
                         className="absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
                         style={{
                             opacity: hoveredIndex === index ? 1 : 0,
-                            background: `linear-gradient(135deg, ${mat.gradientFrom} 0%, ${mat.gradientTo} 100%)`,
+                            background: isMobile ? "#000" : `linear-gradient(135deg, ${mat.gradientFrom} 0%, ${mat.gradientTo} 100%)`,
                         }}
                     />
                 ))}
@@ -79,7 +82,7 @@ const MaterialsSection = () => {
                                 >
                                     <div
                                         className={cn(
-                                            "w-[400px] h-[350px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+                                            "w-100 h-87.5 rounded-2xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
                                             isActive
                                                 ? "opacity-100 translate-y-0 scale-100"
                                                 : "opacity-0 translate-y-10 scale-95"
@@ -91,7 +94,7 @@ const MaterialsSection = () => {
                                             className="w-full h-full object-cover"
                                         />
                                         {/* Gradient overlay on image bottom */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                                     </div>
                                 </div>
 
@@ -184,80 +187,82 @@ const MaterialsSection = () => {
                 <div className="pointer-events-auto mb-10 lg:mb-14">
                     <SectionHeader className="justify-between w-full mt-4">
                         <Heading>Materials</Heading>
-                        <Description className="text-end">{`From raw ingot to finished component\neight metals, one precision partner.`}</Description>
+                        <Description className="md:text-end text-gray-300">{`From raw ingot to finished component\neight metals, one precision partner.`}</Description>
                     </SectionHeader>
                     {/* Decorative rule */}
                     <div className="h-px w-full bg-linear-to-r from-white/25 via-white/10 to-transparent mt-6" />
                 </div>
 
                 {/* ── Desktop: interactive list ── */}
-                <div className="hidden lg:flex flex-col w-[420px] mt-auto pointer-events-auto">
+                <div className="hidden lg:flex flex-col w-105 mt-auto pointer-events-auto">
                     <div className="flex flex-col">
                         {materials.map((mat, index) => {
                             const isActive = hoveredIndex === index;
 
                             return (
-                                <div
-                                    key={mat.id}
-                                    onMouseEnter={() => setHoveredIndex(index)}
-                                    onMouseLeave={() => setHoveredIndex(null)}
-                                    className={cn(
-                                        "group flex items-center gap-4 py-3.5 px-4 rounded-xl cursor-pointer transition-all duration-300",
-                                    )}
-                                    style={{
-                                        backgroundColor: isActive
-                                            ? `${mat.accent}14`
-                                            : "transparent",
-                                    }}
-                                >
-                                    {/* Left accent bar */}
+                                <Fade key={mat.id}>
                                     <div
-                                        className="shrink-0 w-[2px] rounded-full transition-all duration-300"
+
+                                        onMouseEnter={() => setHoveredIndex(index)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                        className={cn(
+                                            "group flex items-center gap-4 py-3.5 px-4 rounded-xl cursor-pointer transition-all duration-300",
+                                        )}
                                         style={{
-                                            height: isActive ? "30px" : "10px",
                                             backgroundColor: isActive
-                                                ? mat.accent
-                                                : "rgba(255,255,255,0.18)",
+                                                ? `${mat.accent}14`
+                                                : "transparent",
                                         }}
-                                    />
-
-                                    {/* Material name */}
-                                    <span
-                                        className={cn(
-                                            "font-display tracking-tight leading-none transition-all duration-300",
-                                            isActive
-                                                ? "text-[1.9rem]"
-                                                : "text-xl text-white/35 group-hover:text-white/60"
-                                        )}
-                                        style={{ color: isActive ? mat.textColor : undefined }}
                                     >
-                                        {mat.name}
-                                    </span>
+                                        {/* Left accent bar */}
+                                        <div
+                                            className="shrink-0 w-0.5 rounded-full transition-all duration-300"
+                                            style={{
+                                                height: isActive ? "30px" : "10px",
+                                                backgroundColor: isActive
+                                                    ? mat.accent
+                                                    : "rgba(255,255,255,0.18)",
+                                            }}
+                                        />
 
-                                    {/* Tag badge — appears when active */}
-                                    <span
-                                        className={cn(
-                                            "font-mono text-[10px] tracking-widest uppercase transition-all duration-300",
-                                            isActive ? "opacity-100" : "opacity-0"
-                                        )}
-                                        style={{ color: mat.accent }}
-                                    >
-                                        {mat.tag}
-                                    </span>
+                                        {/* Material name */}
+                                        <span
+                                            className={cn(
+                                                "font-display tracking-tight leading-none transition-all duration-300",
+                                                isActive
+                                                    ? "text-[1.9rem]"
+                                                    : "text-xl text-white/35 group-hover:text-white/60"
+                                            )}
+                                            style={{ color: isActive ? mat.textColor : undefined }}
+                                        >
+                                            {mat.name}
+                                        </span>
 
-                                    {/* Arrow indicator */}
-                                    <div
-                                        className={cn(
-                                            "ml-auto shrink-0 transition-all duration-300",
-                                            isActive
-                                                ? "opacity-100 translate-x-0"
-                                                : "opacity-0 -translate-x-2"
-                                        )}
-                                        style={{ color: mat.accent }}
-                                    >
-                                        <ArrowRight className="w-4 h-4" />
+                                        {/* Tag badge — appears when active */}
+                                        <span
+                                            className={cn(
+                                                "font-mono text-[10px] tracking-widest uppercase transition-all duration-300",
+                                                isActive ? "opacity-100" : "opacity-0"
+                                            )}
+                                            style={{ color: mat.accent }}
+                                        >
+                                            {mat.tag}
+                                        </span>
+
+                                        {/* Arrow indicator */}
+                                        <div
+                                            className={cn(
+                                                "ml-auto shrink-0 transition-all duration-300",
+                                                isActive
+                                                    ? "opacity-100 translate-x-0"
+                                                    : "opacity-0 -translate-x-2"
+                                            )}
+                                            style={{ color: mat.accent }}
+                                        >
+                                            <ArrowRight className="w-4 h-4" />
+                                        </div>
                                     </div>
-                                </div>
+                                </Fade>
                             );
                         })}
                     </div>
@@ -282,7 +287,7 @@ const MaterialsSection = () => {
                                     alt={mat.name}
                                     className="w-full h-full object-cover opacity-55"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
                                 {/* Symbol overlay */}
                                 <span
                                     className="absolute bottom-3 left-5 font-display text-5xl font-bold leading-none"
@@ -334,14 +339,6 @@ const MaterialsSection = () => {
                         </div>
                     ))}
 
-                    {/* Mobile CTA */}
-                    <a
-                        href="/materials"
-                        className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide border border-white/20 hover:bg-white hover:text-black transition-all duration-300 rounded-full px-6 py-3.5 text-white mt-2"
-                    >
-                        View All Materials
-                        <ArrowRight className="w-4 h-4" />
-                    </a>
                 </div>
 
             </Container>

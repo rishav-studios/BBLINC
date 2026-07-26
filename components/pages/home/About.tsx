@@ -1,9 +1,9 @@
+import Fade from "@/components/animations/Fade"
 import Container from "@/components/layout/Container"
 import Section from "@/components/layout/Section"
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink"
 import { Description, Heading, SectionHeader, Separator } from "@/components/shared/SectionHeader"
 import { TextRevealOnScroll } from "@/components/shared/TextReveal"
-import { InfiniteMovingCards } from "@bbl/ui/components/ui/infinite-moving-cards"
 
 
 const Circle = ({ children }: { children: React.ReactNode }) => {
@@ -15,11 +15,11 @@ const Circle = ({ children }: { children: React.ReactNode }) => {
 
 const About = () => {
     return (
-        <Section className="bg-white">
-            <Container>
+        <Section className="bg-gray-100">
+            <Container className="relative z-2">
 
                 {/* ── Row 1: Header bar ── */}
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                     <SectionHeader>
                         <Heading>About</Heading>
                         <Separator />
@@ -27,53 +27,56 @@ const About = () => {
                             {`Excellence is not an act\nBut a habit.`}
                         </Description>
                     </SectionHeader>
-
-                    <CustomLink href="/about" variant="button-brand" className="h-max">
-                        About us
-                        <Arrow variant="black" />
-                    </CustomLink>
+                    <Fade>
+                        <CustomLink href="/about" variant="button-brand" className="hidden lg:flex h-max">
+                            About us
+                            <Arrow variant="black" />
+                        </CustomLink>
+                    </Fade>
                 </div>
 
                 {/* ── Row 2: Scroll-reveal statement ── */}
-                <div className="py-16 grid grid-cols-3 gap-12">
+                <div className="py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-                    <div className="col-span-2">
+                    <div className="lg:col-span-2">
 
-                        <TextRevealOnScroll as="div" className="text-4xl leading-snug">
+                        <TextRevealOnScroll as="div" className="text-xl md:text-2xl lg:text-4xl leading-snug">
                             {`We are precision engineering partner commited to transforming ideas into world class metal components. Our passion for the innovation, technical excellence, and uncompromising quality enables us to deliver solutions that power industries across the globe.`}
                         </TextRevealOnScroll>
                     </div>
-                    <div className="flex">
-                        <div className="flex flex-col w-max items-center gap-2">
-                            <Circle>
-                                <div className=" font-semibold flex">
-                                    <span className="text-5xl">25</span>
-                                    <span className="text-4xl text-primary -translate-y-4">+</span>
-                                </div>
-                            </Circle>
-                            <Description>Years of experience</Description>
-                        </div>
-                        <div className="flex flex-col items-center gap-2 ml-auto w-max translate-y-24">
-                            <Circle>
-                                <span className="text-5xl font-semibold">25+</span>
-                            </Circle>
-                            <Description>Years of experience</Description>
-                        </div>
+                    <div className="flex flex-col md:flex-row gap-12 lg:gap-0">
+                        <Fade>
+
+                            <div className="flex flex-col w-max items-center gap-2">
+                                <Circle>
+                                    <div className=" font-semibold flex">
+                                        <span className="text-5xl">26</span>
+                                        <span className="text-4xl text-primary -translate-y-4">+</span>
+                                    </div>
+                                </Circle>
+                                <Description>Years of experience</Description>
+                            </div>
+                        </Fade>
+                        <Fade delay={0.5} className="ml-auto md:ml-0 lg:translate-y-24">
+
+                            <div className="flex flex-col items-center gap-2  w-max ">
+                                <Circle>
+                                    <div className=" font-semibold flex">
+                                        <span className="text-5xl">100</span>
+                                        <span className="text-4xl text-primary -translate-y-4">+</span>
+                                    </div>
+                                </Circle>
+                                <Description>Clients Worldwide</Description>
+                            </div>
+                        </Fade>
                     </div>
 
 
                 </div>
 
-                {/* row 3 moving logos */}
-                <div className="mt-12">
-
-                    <InfiniteMovingCards speed="normal">
-                        {Array(10).fill("logos").map((item, idx) => (
-                            <div key={idx}>{item}</div>
-                        ))}
-                    </InfiniteMovingCards>
-                </div>
-
+                <Fade className="w-full flex justify-center items-center lg:mt-24">
+                    <img className="w-full" src="/exploded-black.webp" />
+                </Fade>
 
             </Container>
         </Section>

@@ -4,9 +4,9 @@ import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Arrow, CustomLink } from "@/components/shared/clickables/CustomLink";
 import { Description, Heading, SectionHeader, Separator } from "@/components/shared/SectionHeader";
+import type { Industry } from "@/constants/industries_data";
 import { motion, Variants } from "motion/react";
 import Image from "next/image";
-import type { Industry } from "../home/industries/IndustryCard";
 
 // ── Per-card animation ────────────────────────────────────────────────────────
 const cardVariants: Variants = {
@@ -103,10 +103,10 @@ export default function IndustriesGrid({ industries }: { industries: Industry[] 
     return (
         <Section className="bg-white" aria-label="All industries">
             <Container className="space-y-20">
-                <SectionHeader>
+                <SectionHeader className="max-w-full">
                     <Heading>Empowering various industries</Heading>
                     <Separator />
-                    <Description>{`Precision-machined brass components\ntrusted across eight demanding sectors — built to spec, delivered at scale.`}</Description>
+                    <Description className="max-w-70 md:max-w-md">Precision-machined brass components trusted across eight demanding sectors — built to spec, delivered at scale.</Description>
 
                 </SectionHeader>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

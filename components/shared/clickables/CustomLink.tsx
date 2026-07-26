@@ -16,6 +16,7 @@ type BaseCustomLinkProps = {
 
 type LinkProps = BaseCustomLinkProps & {
     href: string;
+    target?: "_blank" | "_self" | "_parent" | "_top";
 };
 
 type SpanProps = BaseCustomLinkProps & {
@@ -48,8 +49,9 @@ export const CustomLink = (props: CustomLinkProps) => {
         className,
     );
     if (href) {
+        const { target } = props;
         return (
-            <Link href={href} className={combinedVariantClassName} {...rest}>
+            <Link target={target} href={href} className={combinedVariantClassName} {...rest}>
                 {children}
             </Link>
 

@@ -1,8 +1,8 @@
 "use client";
 
+import type { Industry } from "@/constants/industries_data";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useRef, useState } from "react";
-import type { Industry } from "./IndustryCard";
 
 type UseIndustryScrollReturn = {
     containerRef: React.RefObject<HTMLDivElement>;
