@@ -3,10 +3,6 @@ type IndustryComponent = {
     components: string[]
 }
 
-function populateComponentsArray() {
-
-}
-
 export const industryComponents: IndustryComponent[] = [
     {
         industry: "aerospace",

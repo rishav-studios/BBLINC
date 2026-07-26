@@ -4,7 +4,7 @@ import PageHeader from "@/components/shared/PageHeader";
 
 export default function TermsOfServicePage() {
     return (
-        <>
+        <main key="terms-of-service">
             <PageHeader
                 title="Terms of Service"
                 eyebrowText="Legal"
@@ -82,6 +82,6 @@ export default function TermsOfServicePage() {
                     </div>
                 </Container>
             </Section>
-        </>
+        </main>
     );
 }

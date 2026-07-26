@@ -92,6 +92,12 @@ const Navbar = () => {
     const [isExpanded, setIsExpanded] = useState(!isHomePage)
     const isMobile = useIsMobile()
 
+    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
+
+    useEffect(() => {
+        setIsDrawerOpen(false);
+    }, [pathname])
+
     useEffect(() => {
         if (isMobile) {
             setIsExpanded(false)
@@ -140,7 +146,7 @@ const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -6 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="flex gap-6 absolute left-1/2 -translate-x-1/2"
+                            className="flex gap-6 absolute md:relative xl:absolute xl:left-1/2 xl:-translate-x-1/2"
                         >
                             {navItems.map((item) => (
                                 <li key={item.title}>
@@ -181,7 +187,7 @@ const Navbar = () => {
                             >
 
                                 {isMobile ? (
-                                    <Drawer direction="right">
+                                    <Drawer direction="right" open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
                                         <DrawerTrigger
                                             className="my-auto flex"
                                             aria-label="Open menu"

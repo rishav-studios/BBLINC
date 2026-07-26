@@ -19,8 +19,7 @@ export type ContactSchemaType = z.infer<typeof contactSchema>
 
 export const createContactSchema = contactSchema.omit({
     id: true,
-    createdAt: true,
-    updatedAt: true,
+    created_at: true,
     status: true
 });
 

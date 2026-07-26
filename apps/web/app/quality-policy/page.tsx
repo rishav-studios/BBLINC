@@ -4,7 +4,7 @@ import PageHeader from "@/components/shared/PageHeader";
 
 export default function QualityPolicyPage() {
     return (
-        <>
+        <main key="quality-policy">
             <PageHeader
                 title="Quality Policy"
                 eyebrowText="Commitment"
@@ -169,6 +169,6 @@ export default function QualityPolicyPage() {
                     </div>
                 </Container>
             </Section>
-        </>
+        </main>
     );
 }

@@ -12,7 +12,7 @@ export const Industries = {
     oil_gas: "oil & gas",
     chemical: "chemical",
     marine: "marine",
-    others: "others",
+    other: "other",
 } as const;
 
 
@@ -60,8 +60,7 @@ export type QuoteSchemaType = z.infer<typeof quoteSchema>
 
 export const createQuoteSchema = quoteSchema.omit({
     id: true,
-    createdAt: true,
-    updatedAt: true,
+    created_at: true,
     status: true,
     drawing: true
 }).extend({

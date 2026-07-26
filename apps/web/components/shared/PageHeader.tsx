@@ -29,7 +29,7 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
 
                         {/* Left — address */}
                         <div className="md:flex hidden flex-col gap-1">
-                            <a href="https://maps.app.goo.gl/sGKyVJ9uXdXvq8Ny6" target='_blank'>
+                            <a href="https://maps.app.goo.gl/X7yP2VG1YgezafVe7" target='_blank'>
                                 <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug", otherTextClassName)}>
                                     Jamnagar, Gujarat, India
                                 </p>
@@ -55,9 +55,9 @@ const PageHeader = ({ title, eyebrowText, style, eyeBrowClassName = "", otherTex
 
                         {/* Right — GPS coordinates */}
                         <div className="md:flex hidden flex-col items-end gap-1">
-                            <a href="https://maps.app.goo.gl/sGKyVJ9uXdXvq8Ny6" target='_blank'>
+                            <a href="https://maps.app.goo.gl/X7yP2VG1YgezafVe7" target='_blank'>
                                 <p className={cn("text-xs uppercase tracking-widest text-foreground/60 font-medium leading-snug text-end", otherTextClassName)}>
-                                    22.4707° N, 70.0577° E
+                                    22.4154131° N,70.043864,103° E
                                 </p>
                             </a>
                         </div>

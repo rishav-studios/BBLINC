@@ -4,7 +4,7 @@ import Fade from "@/components/animations/Fade";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import { Description, Heading, SectionHeader } from "@/components/shared/SectionHeader";
-import { materials } from "@/constants/materials_data";
+import { MATERIALS_DATA as materials } from "@/constants/materials_data";
 import useIsMobile from "@/hooks/useIsMobile";
 import { cn } from "@bbl/ui/lib/utils";
 import { useState } from "react";
@@ -44,7 +44,7 @@ const MaterialsSection = () => {
                         className="absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
                         style={{
                             opacity: hoveredIndex === index ? 1 : 0,
-                            background: `linear-gradient(135deg, ${mat.gradientFrom} 0%, ${mat.gradientTo} 100%)`,
+                            background: isMobile ? "#000" : `linear-gradient(135deg, ${mat.gradientFrom} 0%, ${mat.gradientTo} 100%)`,
                         }}
                     />
                 ))}

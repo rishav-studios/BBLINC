@@ -112,49 +112,64 @@ export const INDUSTRIES_DATA: Industry[] = [
             padDigits: 4,
         },
     },
+    {
+        id: "chemical",
+        label: "Chemical",
+        slug: "chemical",
+        description:
+            "Valve bodies, dosing components, and fluid-transfer fittings crafted from dezincification-resistant brass, designed to hold up against corrosive chemical media in demanding processing environments.",
+        stats: [
+            { value: "DZR", unit: "Brass Alloy" },
+            { value: "PN40", unit: "Pressure Rated" },
+        ],
+        posterSrc: "/sectors/posters/chemical.webp",
+        imageSrc: "/sectors/images/chemical.webp",
+        frameSrc: {
+            dir: "/sectors/frames/chemical",
+            prefix: "frame_",
+            count: 65,
+            padDigits: 4,
+        },
+    },
+
+
+    {
+        id: "hvac",
+        label: "HVAC",
+        slug: "hvac",
+        description:
+            "Refrigerant fittings, valve components, and manifold parts precision-turned for leak-tight performance across heating, ventilation, and climate control systems worldwide.",
+        stats: [
+            { value: "Leak-Tight", unit: "Sealing" },
+            { value: "ISO 9001", unit: "Certified" },
+        ],
+        posterSrc: "/sectors/posters/hvac.webp",
+        imageSrc: "/sectors/images/hvac.webp",
+        frameSrc: {
+            dir: "/sectors/frames/hvac",
+            prefix: "frame_",
+            count: 65,
+            padDigits: 4,
+        },
+    },
+    {
+        id: "marine",
+        label: "Marine",
+        slug: "marine",
+        description:
+            "Through-hull fittings, propeller components, and seawater-grade hardware machined from naval brass — engineered to resist corrosion in the harshest marine conditions.",
+        stats: [
+            { value: "Naval", unit: "Grade Brass" },
+            { value: "Salt-Spray", unit: "Tested" },
+        ],
+        posterSrc: "/sectors/posters/marine.webp",
+        imageSrc: "/sectors/images/marine.webp",
+        frameSrc: {
+            dir: "/sectors/frames/marine",
+            prefix: "frame_",
+            count: 65,
+            padDigits: 4,
+        },
+    },
 ];
 
-// {
-//     id: "chemical",
-//     label: "Chemical",
-//     slug: "chemical",
-//     description:
-//         "Valve bodies, dosing components, and fluid-transfer fittings crafted from dezincification-resistant brass, designed to hold up against corrosive chemical media in demanding processing environments.",
-//     stats: [
-//         { value: "DZR", unit: "Brass Alloy" },
-//         { value: "PN40", unit: "Pressure Rated" },
-//     ],
-//     videoSrc: "/sectors/videos/chemical.mp4",
-//     posterSrc: "/sectors/posters/chemical.webp",
-//     imgeSrc: "/sectors/images/chemical.webp"
-// },
-
-
-// {
-//     id: "hvac",
-//     label: "HVAC",
-//     slug: "hvac",
-//     description:
-//     "Refrigerant fittings, valve components, and manifold parts precision-turned for leak-tight performance across heating, ventilation, and climate control systems worldwide.",
-//     stats: [
-//     { value: "Leak-Tight", unit: "Sealing" },
-//     { value: "ISO 9001", unit: "Certified" },
-//     ],
-//     videoSrc: "/sectors/videos/hvac.mp4",
-//     posterSrc: "/sectors/posters/hvac.webp",
-//     imgeSrc: "/sectors/images/hvac.webp"
-//     },
-//     {
-//     id: "marine",
-//     label: "Marine",
-//     slug: "marine",
-//     description:
-//     "Through-hull fittings, propeller components, and seawater-grade hardware machined from naval brass — engineered to resist corrosion in the harshest marine conditions.",
-//     stats: [
-//     { value: "Naval", unit: "Grade Brass" },
-//     { value: "Salt-Spray", unit: "Tested" },
-//     ],
-//     videoSrc: "/sectors/videos/marine.mp4",
-//     posterSrc: "/sectors/posters/marine.webp",
-//     imgeSrc: "/sectors/images/marine.webp"
-//     },

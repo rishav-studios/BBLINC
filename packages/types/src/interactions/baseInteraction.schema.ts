@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { emailSchema, phoneNumberSchema } from "../base.schema";
 export const QuoteStatus = {
     // Initial Stages
     NEW: "NEW",                               // Just landed in the admin panel
@@ -32,15 +33,8 @@ export const baseInteractionSchema = z.object({
         .trim()
         .optional(),
 
-    email: z
-        .email("Please enter a valid email address"),
-    phone: z
-        .string({ error: "Phone Number is required" })
-        .trim()
-        .min(1, "Phone Number is required")
-        .regex(
-            /^\+?[0-9]{7,15}$/,
-            "Please enter a valid phone number (7 to 15 digits, optional +)"),
+    email: emailSchema,
+    phone: phoneNumberSchema,
 
     projectDetails: z
         .string({ error: "Project Details are required" })

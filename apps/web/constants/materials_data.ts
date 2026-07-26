@@ -18,7 +18,7 @@ export type Material = {
     imageSrc: string;
 };
 
-export const materials: Material[] = [
+export const MATERIALS_DATA: Material[] = [
     {
         id: "brass",
         name: "Brass",

@@ -6,6 +6,10 @@ import { INDUSTRIES_DATA } from "@/constants/industries_data";
 import { motion } from "motion/react";
 import { SectorsSection } from "./IndustrySection";
 
+const industryNotToShowOnHomePage = ["marine", "chemical", "hvac"]
+
+const indstriesForHomePage = INDUSTRIES_DATA.filter((industry) => !industryNotToShowOnHomePage.includes(industry.slug))
+
 export default function Sectors() {
     return (
         <Section className="py-0! bg-white">
@@ -34,7 +38,7 @@ export default function Sectors() {
             >
 
                 <SectorsSection
-                    sectors={INDUSTRIES_DATA}
+                    sectors={indstriesForHomePage}
                     scrollHeightPerSector="150vh"   // increase for slower scrubbing
                 />
             </motion.div>

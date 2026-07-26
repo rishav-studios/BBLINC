@@ -9,7 +9,7 @@ import { GlobeProvider } from "@/contexts/GlobeContext";
 
 export default function Page() {
   return (
-    <>
+    <main key="home">
       <Hero />
       <About />
       <GlobeProvider>
@@ -19,6 +19,6 @@ export default function Page() {
       <MaterialsSection />
       <WhyUsSection />
       <CTA />
-    </>
+    </main>
   );
 }

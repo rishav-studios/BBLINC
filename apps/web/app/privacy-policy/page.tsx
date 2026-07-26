@@ -4,7 +4,7 @@ import PageHeader from "@/components/shared/PageHeader";
 
 export default function PrivacyPolicyPage() {
     return (
-        <>
+        <main key="privacy-policy">
             <PageHeader
                 title="Privacy Policy"
                 eyebrowText="Legal"
@@ -77,6 +77,6 @@ export default function PrivacyPolicyPage() {
                     </div>
                 </Container>
             </Section>
-        </>
+        </main>
     );
 }

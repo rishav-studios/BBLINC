@@ -8,7 +8,7 @@ import PageHeader from "@/components/shared/PageHeader";
 
 export default function Page() {
     return (
-        <>
+        <main key="about">
             <PageHeader title="About Us" eyebrowText="Who we are" />
             <MissionStatement />
             <AboutIdentity />
@@ -25,7 +25,7 @@ export default function Page() {
                         </span>
                     </>
                 } />
-        </>
+        </main>
     );
 }
 

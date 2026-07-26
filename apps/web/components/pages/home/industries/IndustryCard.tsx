@@ -129,7 +129,7 @@ export const IndustryCard = ({ Industry, isVisible }: IndustryCardProps) => {
                         onMouseLeave={() => setIsHovered(false)}
                     >
                         <CustomLink
-                            href={`/Industrys/${Industry.slug}`}
+                            href={`/industries/${Industry.slug}`}
                             variant="button-white"
                             className="w-max hover:bg-primary hover:text-background transition-colors duration-300">
 

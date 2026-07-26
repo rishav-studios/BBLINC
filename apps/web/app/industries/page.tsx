@@ -5,7 +5,7 @@ import { INDUSTRIES_DATA } from "@/constants/industries_data";
 
 export default function Page() {
     return (
-        <>
+        <main key="industries">
             <PageHeader title="Industries We Serve" eyebrowText="Industries" />
             <IndustriesGrid industries={INDUSTRIES_DATA} />
             <CTA
@@ -21,6 +21,6 @@ export default function Page() {
                 titleClassName="text-white"
                 descriptionClassName="text-white/80"
                 className="bg-linear-to-r from-gold to-primary" />
-        </>
+        </main>
     );
 }

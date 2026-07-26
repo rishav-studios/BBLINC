@@ -57,7 +57,7 @@ const Exports = () => {
                 </SectionHeader>
 
                 {/* countries grid – visible md+ */}
-                <div className='md:grid hidden grid-cols-3 gap-6 '>
+                <div className='md:grid hidden grid-cols-3 max-w-xl lg:max-w-3xl gap-6 '>
                     {
                         exportCountries.map((country: ExportCountry) => (
                             <CountryCard
