@@ -23,7 +23,7 @@ export const INDUSTRIES_DATA: Industry[] = [
             "From hydraulic fittings to instrument housings, our brass components are machined to AS9100-certified precision — holding tight tolerances in applications where margin for error simply doesn't exist.",
         stats: [
             { value: "±0.005", unit: "mm Tolerance" },
-            { value: "AS9100", unit: "Certified" },
+            // { value: "AS9100", unit: "Certified" },
         ],
         imageSrc: "/sectors/images/aerospace.webp",
         posterSrc: "/sectors/posters/aerospace.webp",
@@ -42,7 +42,7 @@ export const INDUSTRIES_DATA: Industry[] = [
         description:
             "Fuel-system inserts, EV battery terminal blocks, and precision-turned connectors delivered to OEM and Tier-1 manufacturers under IATF 16949-compliant quality systems, at volumes that keep pace with modern production lines.",
         stats: [
-            { value: "IATF", unit: "16949 Certified" },
+            // { value: "IATF", unit: "16949 Certified" },
             { value: "1M+", unit: "Parts / Year" },
         ],
         imageSrc: "/sectors/images/automobile.webp",
@@ -62,7 +62,7 @@ export const INDUSTRIES_DATA: Industry[] = [
             "Irrigation fittings, sprayer nozzles, and pump components engineered from corrosion-resistant brass alloys — built to perform through seasons of exposure to soil, moisture, and agrochemicals.",
         stats: [
             { value: "20+", unit: "Years Service Life" },
-            { value: "IP65", unit: "Weather Sealed" },
+            // { value: "IP65", unit: "Weather Sealed" },
         ],
         posterSrc: "/sectors/posters/agriculture.webp",
         imageSrc: "/sectors/images/agriculture.webp",
@@ -80,7 +80,7 @@ export const INDUSTRIES_DATA: Industry[] = [
         description:
             "Precision-machined casings, connector bodies, and structural fittings manufactured to strict military specifications — where consistency and traceability are non-negotiable.",
         stats: [
-            { value: "JSS", unit: "Compliant" },
+            // { value: "JSS", unit: "Compliant" },
             { value: "100%", unit: "Traceable" },
         ],
         posterSrc: "/sectors/posters/defense.webp",
@@ -100,7 +100,7 @@ export const INDUSTRIES_DATA: Industry[] = [
         description:
             "Offshore and onshore valve bodies, manifolds, and coupling fittings machined from dezincification-resistant brass — engineered for aggressive media and extreme operating pressures.",
         stats: [
-            { value: "600", unit: "Bar Rated" },
+            // { value: "600", unit: "Bar Rated" },
             { value: "DZR", unit: "Brass Alloy" },
         ],
         posterSrc: "/sectors/posters/oil-gas.webp",
@@ -120,7 +120,7 @@ export const INDUSTRIES_DATA: Industry[] = [
             "Valve bodies, dosing components, and fluid-transfer fittings crafted from dezincification-resistant brass, designed to hold up against corrosive chemical media in demanding processing environments.",
         stats: [
             { value: "DZR", unit: "Brass Alloy" },
-            { value: "PN40", unit: "Pressure Rated" },
+            // { value: "PN40", unit: "Pressure Rated" },
         ],
         posterSrc: "/sectors/posters/chemical.webp",
         imageSrc: "/sectors/images/chemical.webp",
@@ -141,7 +141,7 @@ export const INDUSTRIES_DATA: Industry[] = [
             "Refrigerant fittings, valve components, and manifold parts precision-turned for leak-tight performance across heating, ventilation, and climate control systems worldwide.",
         stats: [
             { value: "Leak-Tight", unit: "Sealing" },
-            { value: "ISO 9001", unit: "Certified" },
+            // { value: "ISO 9001", unit: "Certified" },
         ],
         posterSrc: "/sectors/posters/hvac.webp",
         imageSrc: "/sectors/images/hvac.webp",
@@ -159,7 +159,7 @@ export const INDUSTRIES_DATA: Industry[] = [
         description:
             "Through-hull fittings, propeller components, and seawater-grade hardware machined from naval brass — engineered to resist corrosion in the harshest marine conditions.",
         stats: [
-            { value: "Naval", unit: "Grade Brass" },
+            // { value: "Naval", unit: "Grade Brass" },
             { value: "Salt-Spray", unit: "Tested" },
         ],
         posterSrc: "/sectors/posters/marine.webp",

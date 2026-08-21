@@ -9,6 +9,28 @@ export type Json =
 export type Database = {
     public: {
         Tables: {
+            catalogue_leads: {
+                Row: {
+                    id: string
+                    created_at: string
+                    full_name: string
+                    email: string
+                    phone: string
+                }
+                Insert: {
+                    id?: string
+                    created_at?: string
+                    full_name: string
+                    email: string
+                    phone: string
+                }
+                Update: Partial<{
+                    full_name: string
+                    email: string
+                    phone: string
+                }>
+                Relationships: []
+            }
             industries: {
                 Row: {
                     id: string
