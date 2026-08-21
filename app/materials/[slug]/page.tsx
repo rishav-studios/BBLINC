@@ -1,17 +1,40 @@
+import type { Metadata } from "next";
 import CTA from "@/components/pages/home/CTA";
 import IndustryComponentsSection from "@/components/pages/industries/IndustryComponentsSection";
 import PageHeader from "@/components/shared/PageHeader";
-import { materialComponents } from "@/constants/material_components";
 import { MATERIALS_DATA } from "@/constants/materials_data";
+import { fetchMaterialComponents } from "@/lib/materials";
 
 type PageProps = {
     params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const material = MATERIALS_DATA.find((m) => m.id === slug);
+
+    if (!material) return { title: "Material" };
+
+    const title = `${material.name} Components Manufacturer`;
+    const description = `BBLINC manufactures precision ${material.name.toLowerCase()} components (${material.properties.join(", ")}) for industrial and OEM applications. ${material.shortDescription}`;
+    const url = `https://www.bblinc.in/materials/${slug}`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: url },
+        openGraph: {
+            title: `${title} | BBLINC`,
+            description,
+            url,
+        },
+    };
+}
+
 const page = async ({ params }: PageProps) => {
     const { slug } = await params
     const material = MATERIALS_DATA.find((material) => material.id === slug)
-    const components = materialComponents.find((comp) => comp.material === slug)?.components || []
+    const components = await fetchMaterialComponents(slug)
     return (
         <main key={slug + "-material"}>
             <PageHeader
