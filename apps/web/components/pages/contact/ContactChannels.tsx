@@ -16,8 +16,8 @@ const channels = [
     },
     {
         title: "Phone",
-        value: "+91 91733 55608",
-        link: "tel:+919173355608",
+        value: "+91 76230 51171",
+        link: "tel:+917623051171",
         cta: "Call us →",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -27,8 +27,8 @@ const channels = [
     },
     {
         title: "WhatsApp",
-        value: "+91 91733 55608",
-        link: "https://wa.me/919173355608",
+        value: "+91 76230 51171",
+        link: "https://wa.me/917623051171",
         cta: "Chat now →",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

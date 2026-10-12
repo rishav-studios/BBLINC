@@ -181,8 +181,8 @@ const FooterContactInfo = () => {
                     <a href="mailto:info@bblinc.in" target="_blank" className={combinedClasses}>
                         info@bblinc.in
                     </a>
-                    <a href="tel:+919173355608" target="_blank" className={combinedClasses}>
-                        +91 9173355608
+                    <a href="tel:+917623051171" target="_blank" className={combinedClasses}>
+                        +91 7623051171
                     </a>
                     <a href="tel:+919879614827" target="_blank" className={combinedClasses}>
                         +91 9879614827
